@@ -5,18 +5,18 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 
-class JogoBase extends JFrame {
+class PVPGame extends JFrame {
   Image img;
-  Desenho des = new Desenho();
+  Drawning drawning = new Drawning();
 
-  class Desenho extends JPanel {
+  class Drawning extends JPanel {
 
-    Desenho() {
+    Drawning() {
       try {
         setPreferredSize(new Dimension(1000, 600));
-        img = ImageIO.read(new File("fundo.jpeg"));
+        img = ImageIO.read(new File("background.jpeg"));
       } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "A imagem não pode ser carregada!\n" + e, "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "The image cannot be loaded!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
         System.exit(1);
       }
     }
@@ -28,15 +28,15 @@ class JogoBase extends JFrame {
     }
   }
 
-  JogoBase() {
+  PVPGame() {
     super("Trabalho");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    add(des);
+    add(drawning);
     pack();
     setVisible(true);
   }
 
   static public void main(String[] args) {
-    JogoBase f = new JogoBase();
+    PVPGame PVP = new PVPGame();
   }
 }

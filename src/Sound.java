@@ -7,7 +7,7 @@ import java.net.URL;
 import javax.swing.*;
 import javax.sound.sampled.*;
 
-public class Som {
+public class Sound {
     public static void main(String[] args) {
 
         try {
@@ -19,10 +19,10 @@ public class Som {
         }
     }
 
-    public static synchronized void playSound(final String arq) {
+    public static synchronized void playSound(final String file) {
         try {
             AudioInputStream ais = AudioSystem
-                    .getAudioInputStream(new File(arq));
+                    .getAudioInputStream(new File(file));
             Clip c = AudioSystem.getClip(AudioSystem.getMixerInfo()[1]);
             c.open(ais);
             c.start();
