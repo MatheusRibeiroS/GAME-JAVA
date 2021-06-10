@@ -39,12 +39,14 @@ public class movement {
   int posYUni = 500;
   boolean validation = true;
   int character = 0;
+  Image background;
 
   public class Drawning extends JPanel {
 
     Drawning() {
       try {
         setPreferredSize(new Dimension(1000, 600));
+        background = ImageIO.read(new File("../img/Background.JPG"));
         //Skeleton Sprites imported
         Skeleton[AttSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking1-Skeleton.png"));
         Skeleton[AttSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking2-Skeleton.png"));
@@ -78,6 +80,7 @@ public class movement {
       }
 
       super.paintComponent(g);
+      g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
       g.drawImage(Skeleton[moveStateSkl], posXSkl, posYSkl, this);
       g.drawImage(Unicorn[moveStateUni], posXUni, posYUni, this);
       Toolkit.getDefaultToolkit().sync();
