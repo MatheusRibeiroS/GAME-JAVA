@@ -3,18 +3,24 @@ import java.awt.event.*;
 import java.awt.image.*;
 import javax.swing.*;
 import java.io.*;
+import java.rmi.server.Skeleton;
+
 import javax.imageio.*;
 
-class PVPGame extends JFrame {
-  Image img;
-  Image img1;
-  Image img2;
-  Image img3;
-  Image img4;
-  Image img5;
-  Image img6;
-  Image img7;
-  Image img8;
+class pvpGame extends JFrame {
+  final int AttSkl1 = 0;
+  final int AttSkl2 = 1;
+  final int DeadSkl1 = 2;
+  final int DeadSkl2 = 3;
+  final int RelaxSkl = 4;
+  final int WalkSkl1 = 5;
+  final int WalkSkl2 = 6;
+  final int WalkSkl3 = 7;
+  final int WalkSkl4 = 8;
+
+  Image Skeleton[] = new Image[9];
+  //Image SwordKnight[] = new Image[6];
+  //Image Unicorn[] = new Image[6];
   
   Drawning drawning = new Drawning();
 
@@ -23,16 +29,15 @@ class PVPGame extends JFrame {
     Drawning() {
       try {
         setPreferredSize(new Dimension(1000, 600));
-        //img = ImageIO.read(new File("background.jpeg"));
-        img = ImageIO.read(new File("./img/Skeleton-Sprites/Relaxed-Skeleton.png"));
-        img1 = ImageIO.read(new File("./img/Skeleton-Sprites/Attacking1-Skeleton.png"));
-        img2 = ImageIO.read(new File("./img/Skeleton-Sprites/Attacking2-Skeleton.png"));
-        img3 = ImageIO.read(new File("./img/Sword-Knight-Sprites/pixil-frame-0.png"));
-        img4 = ImageIO.read(new File("./img/Sword-Knight-Sprites/Preparing-Attack-Sword-Knight.png"));
-        img5 = ImageIO.read(new File("./img/Unicorn-Knight/UnicornAttack.png"));
-        img6 = ImageIO.read(new File("./img/Unicorn-Knight/UnicornDead.png"));
-        img7 = ImageIO.read(new File("./img/Unicorn-Knight/UnicornWalk1.png"));
-        img8 = ImageIO.read(new File("./img/Trident-Knight/TridentKnight.png"));
+        Skeleton[AttSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking1-Skeleton.png"));
+        Skeleton[AttSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking2-Skeleton.png"));
+        Skeleton[DeadSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Dead1-Skeleton.png"));
+        Skeleton[DeadSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Dead2-Skeleton.png"));
+        Skeleton[RelaxSkl] = ImageIO.read(new File("../img/Skeleton-Sprites/Relaxed-Skeleton.png"));
+        Skeleton[WalkSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking1-Skeleton.png"));
+        Skeleton[WalkSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking2-Skeleton.png"));
+        Skeleton[WalkSkl3] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking3-Skeleton.png"));
+        Skeleton[WalkSkl4] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking4-Skeleton.png"));
       } catch (IOException e) {
         JOptionPane.showMessageDialog(this, "The image cannot be loaded!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
         System.exit(1);
@@ -41,21 +46,21 @@ class PVPGame extends JFrame {
 
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
-      g.drawImage(img, 0, 0, this);
-      g.drawImage(img, 0, 0, this);
-      g.drawImage(img1, 50, 0, this);
-      g.drawImage(img2, 100, 0, this);
-      g.drawImage(img3, 150, 0, this);
-      g.drawImage(img4, 200, 0, this);
-      g.drawImage(img5, 250, 0, this);
-      g.drawImage(img6, 300, 0, this);
-      g.drawImage(img7, 380, 0, this);
-      g.drawImage(img8, 420, 0, this);
+      //g.drawImage(img, 0, 0, this);
+      g.drawImage(Skeleton[AttSkl1], 0, 0, this);
+      g.drawImage(Skeleton[AttSkl2], 50, 0, this);
+      g.drawImage(Skeleton[DeadSkl1], 100, 0, this);
+      g.drawImage(Skeleton[DeadSkl2], 150, 0, this);
+      g.drawImage(Skeleton[RelaxSkl], 200, 0, this);
+      g.drawImage(Skeleton[WalkSkl1], 250, 0, this);
+      g.drawImage(Skeleton[WalkSkl2], 300, 0, this);
+      g.drawImage(Skeleton[WalkSkl3], 380, 0, this);
+      g.drawImage(Skeleton[WalkSkl4], 420, 0, this);
       Toolkit.getDefaultToolkit().sync();
     }
   }
 
-  PVPGame() {
+  pvpGame() {
     super("PVP GAME");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(drawning);
@@ -64,6 +69,6 @@ class PVPGame extends JFrame {
   }
 
   static public void main(String[] args) {
-    PVPGame PVP = new PVPGame();
+    pvpGame pvp = new pvpGame();
   }
 }

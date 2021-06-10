@@ -7,7 +7,7 @@ import java.net.URL;
 import javax.swing.*;
 import javax.sound.sampled.*;
 
-public class Sound {
+public class sound {
     public static void main(String[] args) {
 
         try {
