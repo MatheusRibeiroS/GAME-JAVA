@@ -47,15 +47,15 @@ class pvpGame extends JFrame {
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
       //g.drawImage(img, 0, 0, this);
-      g.drawImage(Skeleton[AttSkl1], 0, 0, this);
-      g.drawImage(Skeleton[AttSkl2], 50, 0, this);
-      g.drawImage(Skeleton[DeadSkl1], 100, 0, this);
-      g.drawImage(Skeleton[DeadSkl2], 150, 0, this);
-      g.drawImage(Skeleton[RelaxSkl], 200, 0, this);
-      g.drawImage(Skeleton[WalkSkl1], 250, 0, this);
-      g.drawImage(Skeleton[WalkSkl2], 300, 0, this);
-      g.drawImage(Skeleton[WalkSkl3], 380, 0, this);
-      g.drawImage(Skeleton[WalkSkl4], 420, 0, this);
+    //   g.drawImage(Skeleton[AttSkl1], 0, 0, this);
+    //   g.drawImage(Skeleton[AttSkl2], 50, 0, this);
+    //   g.drawImage(Skeleton[DeadSkl1], 100, 0, this);
+    //   g.drawImage(Skeleton[DeadSkl2], 150, 0, this);
+    g.drawImage(Skeleton[RelaxSkl], 200, 0, this);
+    //   g.drawImage(Skeleton[WalkSkl1], 250, 0, this);
+    //   g.drawImage(Skeleton[WalkSkl2], 300, 0, this);
+    //   g.drawImage(Skeleton[WalkSkl3], 380, 0, this);
+    //   g.drawImage(Skeleton[WalkSkl4], 420, 0, this);
       Toolkit.getDefaultToolkit().sync();
     }
   }
@@ -66,6 +66,13 @@ class pvpGame extends JFrame {
     add(drawning);
     pack();
     setVisible(true);
+    movement m = new movement();
+    addKeyListener(new KeyAdapter() {
+      public void keyPressed(KeyEvent e) {
+        int c = e.getKeyCode();
+        m.skelMov(c);
+      }
+    });
   }
 
   static public void main(String[] args) {
