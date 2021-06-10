@@ -5,6 +5,8 @@ import javax.swing.*;
 
 class pvpGame extends JFrame {
 
+  String character = "Skeleton";
+
     //Declares a new Instance of movement to Access Inner Classes
     movement m = new movement();
     
@@ -19,7 +21,13 @@ class pvpGame extends JFrame {
     addKeyListener(new KeyAdapter() {
       public void keyPressed(KeyEvent e) {
         int c = e.getKeyCode();
-        m.skelMov(c);
+        if(c == KeyEvent.VK_1) {
+          character = "Skeleton";
+        } else if(c == KeyEvent.VK_2) {
+          character = "Unicorn";
+        }
+        m.moveP1(c, character);
+        
       }
     });
   }
