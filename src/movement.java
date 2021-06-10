@@ -3,6 +3,9 @@ import java.awt.event.*;
 import java.awt.image.*;
 import javax.swing.*;
 import java.io.*;
+import java.net.http.WebSocket.Listener;
+import java.sql.Time;
+
 import javax.imageio.*;
 
 public class movement {
@@ -10,7 +13,7 @@ public class movement {
   Image Skeleton[] = new Image[9];
   // Image SwordKnight[] = new Image[6];
   // Image Unicorn[] = new Image[6];
-  
+
   final int RelaxSkl = 0;
   final int AttSkl1 = 1;
   final int AttSkl2 = 2;
@@ -25,6 +28,7 @@ public class movement {
   int posX = 350;
   int posY = 0;
   boolean validation = true;
+  int character = 0;
 
   public class Drawning extends JPanel {
 
@@ -45,16 +49,14 @@ public class movement {
         System.exit(1);
       }
     }
-    
+
     public void paintComponent(Graphics g) {
 
-      if(validation) {
+      if (validation) {
         posY = (getSize().height / 2) - Skeleton[RelaxSkl].getHeight(this);
         validation = false;
       }
 
-      
-      
       super.paintComponent(g);
       g.drawImage(Skeleton[moveState], posX, posY, this);
       // g.drawImage(img, 0, 0, this);
@@ -73,55 +75,57 @@ public class movement {
   // Declares a new Instance of Drawning Class to be used on pvpGame.
   Drawning draw = new Drawning();
 
+  
+
+  public void animateSkel() {
+    if ((moveState == RelaxSkl) || (moveState == WalkSkl4) || (moveState == AttSkl1) || (moveState == AttSkl2)) {
+      moveState = WalkSkl1;
+    } else if (moveState == WalkSkl1) {
+      moveState = WalkSkl2;
+    } else if (moveState == WalkSkl2) {
+      moveState = WalkSkl3;
+    } else if (moveState == WalkSkl3) {
+      moveState = WalkSkl4;
+    }
+  }
+
   public void skelMov(int move) {
+
     if (move == KeyEvent.VK_RIGHT) {
-      if ((moveState == RelaxSkl) || (moveState == WalkSkl4)) {
-        moveState = WalkSkl1;
-      } else if (moveState == WalkSkl1) {
-        moveState = WalkSkl2;
-      } else if (moveState == WalkSkl2) {
-        moveState = WalkSkl3;
-      } else if (moveState == WalkSkl3) {
-        moveState = WalkSkl4;
-      }
+
+      animateSkel();
       posX += 5;
       draw.repaint();
-    }  if (move == KeyEvent.VK_LEFT) {
-      if ((moveState == RelaxSkl) || (moveState == WalkSkl4)) {
-        moveState = WalkSkl1;
-      } else if (moveState == WalkSkl1) {
-        moveState = WalkSkl2;
-      } else if (moveState == WalkSkl2) {
-        moveState = WalkSkl3;
-      } else if (moveState == WalkSkl3) {
-        moveState = WalkSkl4;
-      }
+
+    }
+    if (move == KeyEvent.VK_LEFT) {
+      animateSkel();
       posX -= 5;
       draw.repaint();
-    }  if (move == KeyEvent.VK_UP) {
-      if ((moveState == RelaxSkl) || (moveState == WalkSkl4)) {
-        moveState = WalkSkl1;
-      } else if (moveState == WalkSkl1) {
-        moveState = WalkSkl2;
-      } else if (moveState == WalkSkl2) {
-        moveState = WalkSkl3;
-      } else if (moveState == WalkSkl3) {
-        moveState = WalkSkl4;
-      }
+
+    }
+    if (move == KeyEvent.VK_UP) {
+
+      animateSkel();
       posY -= 5;
       draw.repaint();
-    }  if (move == KeyEvent.VK_DOWN) {
-      if ((moveState == RelaxSkl) || (moveState == WalkSkl4)) {
-        moveState = WalkSkl1;
-      } else if (moveState == WalkSkl1) {
-        moveState = WalkSkl2;
-      } else if (moveState == WalkSkl2) {
-        moveState = WalkSkl3;
-      } else if (moveState == WalkSkl3) {
-        moveState = WalkSkl4;
-      }
+
+    }
+    if (move == KeyEvent.VK_DOWN) {
+
+      animateSkel();
       posY += 5;
       draw.repaint();
+
+    }
+    if (move == KeyEvent.VK_SPACE) {
+      if(moveState == AttSkl1) {
+        moveState = AttSkl2;
+        draw.repaint();
+      } if(moveState != AttSkl2) {
+        moveState = AttSkl1;
+        draw.repaint();
+      }
     }
   }
 }
