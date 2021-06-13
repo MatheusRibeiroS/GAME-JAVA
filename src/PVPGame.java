@@ -25,6 +25,8 @@ class pvpGame extends JFrame {
           character = "Skeleton";
         } else if(c == KeyEvent.VK_2) {
           character = "Unicorn";
+        } else if(c == KeyEvent.VK_3) {
+          character = "SwordKnight";
         }
         m.moveP1(c, character);
         
