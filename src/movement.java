@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.io.*;
 
 import javax.imageio.*;
-import javax.swing.Timer.*;
+import javax.swing.Timer;
 
 public class movement {
+
+  Timer t = null;
 
   Image Skeleton[] = new Image[9];
   Image Unicorn[] = new Image[6];
@@ -39,8 +41,6 @@ public class movement {
   final int Attk7SwordK = 8;
   final int Walk1SwordK = 9;
   final int Walk2SwordK = 10;
-
-  int globMove;
 
   int moveStateSkl = RelaxSkl;
   int moveStateUni = WalkUni1;
@@ -98,40 +98,6 @@ public class movement {
         System.exit(1);
       }
 
-      Timer t = new Timer(250, new ActionListener() {
-        public void actionPerformed(ActionEvent ae) {
-          if (moveStateSwordK == Walk1SwordK || moveStateSwordK == Walk2SwordK || moveStateSwordK == Relax1SwordK) {
-            moveStateSwordK = Attk1SwordK;
-          }
-          if (moveStateSwordK == Attk1SwordK) {
-            moveStateSwordK = Attk2SwordK;
-          }
-          if (moveStateSwordK == Attk2SwordK) {
-            moveStateSwordK = Attk3SwordK;
-          }
-          if (moveStateSwordK == Attk3SwordK) {
-            moveStateSwordK = Attk4SwordK;
-          }
-          if (moveStateSwordK == Attk4SwordK) {
-            moveStateSwordK = Attk5SwordK;
-          }
-          if (moveStateSwordK == Attk5SwordK) {
-            moveStateSwordK = Attk6SwordK;
-          }
-          if (moveStateSwordK == Attk6SwordK) {
-            moveStateSwordK = Attk7SwordK;
-          }
-          if (moveStateSwordK == Attk7SwordK) {
-            moveStateSwordK = Relax2SwordK;
-          }
-          if (moveStateSwordK == Relax2SwordK) {
-            moveStateSwordK = Relax1SwordK;
-          }
-          swordKMov(globMove);
-        }
-      });
-      t.start();
-      t.stop();
     }
 
     public void paintComponent(Graphics g) {
@@ -148,6 +114,7 @@ public class movement {
       g.drawImage(Unicorn[moveStateUni], posXUni, posYUni, this);
       g.drawImage(SwordKnight[moveStateSwordK], posXSwordK, posYSwordK, this);
       Toolkit.getDefaultToolkit().sync();
+      this.repaint();
     }
   }
 
@@ -155,7 +122,6 @@ public class movement {
   Drawning draw = new Drawning();
 
   public void moveP1(int move, String P1) {
-    globMove = move;
     if (P1.equals("Skeleton")) {
       skelMov(move);
     }
@@ -216,37 +182,33 @@ public class movement {
 
       animateSkel();
       posXSkl += 5;
-      draw.repaint();
 
     }
     if (move == KeyEvent.VK_LEFT) {
       animateSkel();
       posXSkl -= 5;
-      draw.repaint();
 
     }
     if (move == KeyEvent.VK_UP) {
 
       animateSkel();
       posYSkl -= 5;
-      draw.repaint();
 
     }
     if (move == KeyEvent.VK_DOWN) {
 
       animateSkel();
       posYSkl += 5;
-      draw.repaint();
 
     }
     if (move == KeyEvent.VK_SPACE) {
       if (moveStateSkl == AttSkl1) {
         moveStateSkl = AttSkl2;
-        draw.repaint();
+
       }
       if (moveStateSkl != AttSkl2) {
         moveStateSkl = AttSkl1;
-        draw.repaint();
+
       }
     }
   }
@@ -256,26 +218,26 @@ public class movement {
     if (move == KeyEvent.VK_RIGHT) {
       animateUni();
       posXUni += 5;
-      draw.repaint();
+
     } else if (move == KeyEvent.VK_LEFT) {
       animateUni();
       posXUni -= 5;
-      draw.repaint();
+
     } else if (move == KeyEvent.VK_UP) {
       animateUni();
       posYUni -= 5;
-      draw.repaint();
+
     } else if (move == KeyEvent.VK_DOWN) {
       animateUni();
       posYUni += 5;
-      draw.repaint();
+
     } else if (move == KeyEvent.VK_SPACE) {
       if (moveStateUni != AttkUni) {
         moveStateUni = AttkUni;
       } else {
         moveStateUni = WalkUni1;
       }
-      draw.repaint();
+
     }
   }
 
@@ -284,32 +246,46 @@ public class movement {
     if (move == KeyEvent.VK_RIGHT) {
       animateSwordK();
       posXSwordK += 5;
-      draw.repaint();
 
-    }
-    if (move == KeyEvent.VK_LEFT) {
+    } else if (move == KeyEvent.VK_LEFT) {
       animateSwordK();
       posXSwordK -= 5;
-      draw.repaint();
 
-    }
-    if (move == KeyEvent.VK_UP) {
+    } else if (move == KeyEvent.VK_UP) {
 
       animateSwordK();
       posYSwordK -= 5;
-      draw.repaint();
 
-    }
-    if (move == KeyEvent.VK_DOWN) {
-
+    } else if (move == KeyEvent.VK_DOWN) {
       animateSwordK();
       posYSwordK += 5;
-      draw.repaint();
 
+    } else if (move == KeyEvent.VK_SPACE) {
+        t.start();
     }
-    if (move == KeyEvent.VK_SPACE) {
-      draw.repaint();
-    }
+
+    t = new Timer(75, new ActionListener() {
+      public void actionPerformed(ActionEvent ae) {
+        if ((moveStateSwordK == Walk1SwordK) || (moveStateSwordK == Walk2SwordK) || (moveStateSwordK == Relax1SwordK)) {
+          moveStateSwordK = Attk1SwordK;
+        } else if (moveStateSwordK == Attk1SwordK) {
+          moveStateSwordK = Attk2SwordK;
+        } else if (moveStateSwordK == Attk2SwordK) {
+          moveStateSwordK = Attk3SwordK;
+        } else if (moveStateSwordK == Attk3SwordK) {
+          moveStateSwordK = Attk4SwordK;
+        } else if (moveStateSwordK == Attk4SwordK) {
+          moveStateSwordK = Attk5SwordK;
+        } else if (moveStateSwordK == Attk5SwordK) {
+          moveStateSwordK = Attk6SwordK;
+        } else if (moveStateSwordK == Attk6SwordK) {
+          moveStateSwordK = Attk7SwordK;
+        } else if (moveStateSwordK == Attk7SwordK) {
+          moveStateSwordK = Relax2SwordK;
+          ((Timer)ae.getSource()).stop();
+        }
+
+      }
+    });
   }
-
 }
