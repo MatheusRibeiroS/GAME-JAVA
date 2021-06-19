@@ -2,14 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
-
 import javax.imageio.*;
 import javax.swing.Timer;
 
 public class movement {
 
   Timer t = null;
-
   Image Skeleton[] = new Image[9];
   Image Unicorn[] = new Image[6];
   Image SwordKnight[] = new Image[12];
@@ -52,6 +50,7 @@ public class movement {
   int posXSwordK = 600;
   int posYSwordK = 500;
   boolean validation = true;
+  boolean attk = false;
   int character = 0;
   Image background;
 
@@ -97,9 +96,7 @@ public class movement {
             JOptionPane.ERROR_MESSAGE);
         System.exit(1);
       }
-
     }
-
     public void paintComponent(Graphics g) {
 
       if (validation) {
@@ -113,6 +110,8 @@ public class movement {
       g.drawImage(Skeleton[moveStateSkl], posXSkl, posYSkl, this);
       g.drawImage(Unicorn[moveStateUni], posXUni, posYUni, this);
       g.drawImage(SwordKnight[moveStateSwordK], posXSwordK, posYSwordK, this);
+      g.drawRect(posXSkl, posYSkl, Skeleton[moveStateSkl].getWidth(null), Skeleton[moveStateSkl].getHeight(null));
+      g.drawRect(posXUni, posYUni, Unicorn[moveStateUni].getWidth(null)-27, Unicorn[moveStateUni].getHeight(null));
       Toolkit.getDefaultToolkit().sync();
       this.repaint();
     }
@@ -120,7 +119,7 @@ public class movement {
 
   // Declares a new Instance of Drawning Class to be used on pvpGame.
   Drawning draw = new Drawning();
-
+  colision Colision = new colision(posXSkl,posYSkl,posXUni,posYUni,getSkeleton(),getUnicorn(),getSwordKnight());
   public void moveP1(int move, String P1) {
     if (P1.equals("Skeleton")) {
       skelMov(move);
@@ -182,7 +181,7 @@ public class movement {
 
       animateSkel();
       posXSkl += 5;
-
+    
     }
     if (move == KeyEvent.VK_LEFT) {
       animateSkel();
@@ -208,7 +207,6 @@ public class movement {
       }
       if (moveStateSkl != AttSkl2) {
         moveStateSkl = AttSkl1;
-
       }
     }
   }
@@ -237,7 +235,6 @@ public class movement {
       } else {
         moveStateUni = WalkUni1;
       }
-
     }
   }
 
@@ -261,11 +258,14 @@ public class movement {
       posYSwordK += 5;
 
     } else if (move == KeyEvent.VK_SPACE) {
+      if(!attk){
         t.start();
+      }
     }
 
     t = new Timer(75, new ActionListener() {
       public void actionPerformed(ActionEvent ae) {
+        attk = true;
         if ((moveStateSwordK == Walk1SwordK) || (moveStateSwordK == Walk2SwordK) || (moveStateSwordK == Relax1SwordK)) {
           moveStateSwordK = Attk1SwordK;
         } else if (moveStateSwordK == Attk1SwordK) {
@@ -282,10 +282,23 @@ public class movement {
           moveStateSwordK = Attk7SwordK;
         } else if (moveStateSwordK == Attk7SwordK) {
           moveStateSwordK = Relax2SwordK;
+          attk = false;
           ((Timer)ae.getSource()).stop();
         }
-
       }
     });
   }
+
+  public Image[] getSkeleton() {
+    return Skeleton;
+  }
+
+  public Image[] getUnicorn() {
+    return Unicorn;
+  }
+
+  public Image[] getSwordKnight() {
+    return SwordKnight;
+  }
+  
 }
