@@ -1,10 +1,4 @@
 import java.io.*;
-import java.net.*;
-import java.util.*;
-import sun.audio.*;
-import java.io.*;
-import java.net.URL;
-import javax.swing.*;
 import javax.sound.sampled.*;
 
 public class sound {

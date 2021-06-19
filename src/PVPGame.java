@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -28,7 +27,25 @@ class pvpGame extends JFrame {
           character = "SwordKnight";
         }
         m.moveP1(c, character);
-        
+        while(m.Colision.colisionP1()) {
+          switch (c) {
+            case KeyEvent.VK_UP:
+              m.moveP1(KeyEvent.VK_DOWN, character);
+              break;
+            case KeyEvent.VK_DOWN:
+              m.moveP1(KeyEvent.VK_UP, character);
+              break;
+            case KeyEvent.VK_LEFT:
+              m.moveP1(KeyEvent.VK_RIGHT, character);
+              break;
+            case KeyEvent.VK_RIGHT:
+              m.moveP1(KeyEvent.VK_LEFT, character);
+              break;
+            default:
+              break;
+          }
+          m.createColision();
+        }
       }
     });
   }

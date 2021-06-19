@@ -54,6 +54,8 @@ public class movement {
   int character = 0;
   Image background;
 
+  colision Colision;
+
   public class Drawning extends JPanel {
 
     Drawning() {
@@ -104,45 +106,36 @@ public class movement {
         validation = false;
         posYSkl = (getSize().height / 2) - Skeleton[RelaxSkl].getHeight(this);
       }
+      
 
       super.paintComponent(g);
       g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
       g.drawImage(Skeleton[moveStateSkl], posXSkl, posYSkl, this);
       g.drawImage(Unicorn[moveStateUni], posXUni, posYUni, this);
       g.drawImage(SwordKnight[moveStateSwordK], posXSwordK, posYSwordK, this);
-      g.drawRect(posXSkl, posYSkl, Skeleton[moveStateSkl].getWidth(null), Skeleton[moveStateSkl].getHeight(null));
-      g.drawRect(posXUni, posYUni, Unicorn[moveStateUni].getWidth(null)-27, Unicorn[moveStateUni].getHeight(null));
       Toolkit.getDefaultToolkit().sync();
+      createColision();
+      Colision.paintComponent(g);
       this.repaint();
     }
   }
 
   // Declares a new Instance of Drawning Class to be used on pvpGame.
   Drawning draw = new Drawning();
-  colision Colision = new colision(posXSkl,posYSkl,posXUni,posYUni,getSkeleton(),getUnicorn(),getSwordKnight());
+  
   public void moveP1(int move, String P1) {
     if (P1.equals("Skeleton")) {
+      
       skelMov(move);
     }
     if (P1.equals("Unicorn")) {
+      
       uniMov(move);
     }
     if (P1.equals("SwordKnight")) {
       swordKMov(move);
     }
   }
-
-  // public void moveP2(int move, String P2) {
-  // if (P2.equals("Skeleton")) {
-
-  // }
-  // if (P2.equals("Unicorn")) {
-
-  // }
-  // if (P2.equals("SwordKnight")) {
-
-  // }
-  // }
 
   public void animateSkel() {
     if ((moveStateSkl == RelaxSkl) || (moveStateSkl == WalkSkl4) || (moveStateSkl == AttSkl1)
@@ -189,10 +182,8 @@ public class movement {
 
     }
     if (move == KeyEvent.VK_UP) {
-
       animateSkel();
       posYSkl -= 5;
-
     }
     if (move == KeyEvent.VK_DOWN) {
 
@@ -213,6 +204,8 @@ public class movement {
 
   // Move Unicorn
   public void uniMov(int move) {
+    Colision.setRectUni(Colision.rectUni);
+    Colision.colisionP1();
     if (move == KeyEvent.VK_RIGHT) {
       animateUni();
       posXUni += 5;
@@ -300,5 +293,13 @@ public class movement {
   public Image[] getSwordKnight() {
     return SwordKnight;
   }
-  
+
+  public int getPosXSkl() {
+      return posXSkl;
+  } 
+
+  public void createColision() {
+    Colision = new colision(posXSkl,posYSkl,posXUni,posYUni, moveStateSkl, moveStateUni, getSkeleton(),getUnicorn(),getSwordKnight());
+  }
+
 }
