@@ -1,7 +1,15 @@
+//Gustavo Amaral Duarte Rego  RA: 201025817
+//Matheus Dos Santos Ribeiro Silva  RA: 201026406
+
 import java.awt.event.*;
 import javax.swing.*;
 
+
+
 class pvpGame extends JFrame {
+  int lifeSkl = 10;
+  int lifeUni = 10;
+  int lifeSwordK = 10;
 
   String character = "Skeleton";
 
@@ -27,7 +35,7 @@ class pvpGame extends JFrame {
           character = "SwordKnight";
         }
         m.moveP1(c, character);
-        while(m.Colision.colisionP1()) {
+        while(m.Colision.colisionP1(character) == 1) {
           switch (c) {
             case KeyEvent.VK_UP:
               m.moveP1(KeyEvent.VK_DOWN, character);
@@ -45,6 +53,12 @@ class pvpGame extends JFrame {
               break;
           }
           m.createColision();
+        }
+        if(m.Colision.colisionP1(character) == 2 && c == KeyEvent.VK_SPACE) {
+          if(character.equals("Skeleton") && lifeSkl > 0) {
+            lifeSkl--;
+            System.out.println(character + " Life: " + lifeSkl);
+          }
         }
       }
     });

@@ -49,6 +49,7 @@ public class movement {
   int posYUni = 500;
   int posXSwordK = 600;
   int posYSwordK = 500;
+
   boolean validation = true;
   boolean attk = false;
   int character = 0;
@@ -173,22 +174,29 @@ public class movement {
     if (move == KeyEvent.VK_RIGHT) {
 
       animateSkel();
-      posXSkl += 5;
+      //if(posXSkl < background.getWidth(null)) {
+        posXSkl += 5;
+      //}
     
     }
     if (move == KeyEvent.VK_LEFT) {
       animateSkel();
-      posXSkl -= 5;
-
+      //if(posXSkl < background.getWidth(null)) {
+        posXSkl -= 5;
+      //}
     }
     if (move == KeyEvent.VK_UP) {
       animateSkel();
-      posYSkl -= 5;
+      //if(posYSkl > background.getHeight(null)) {
+        posYSkl -= 5;
+      //}
     }
     if (move == KeyEvent.VK_DOWN) {
 
       animateSkel();
-      posYSkl += 5;
+      //if(posYSkl < background.getHeight(null)) {
+        posYSkl += 5;
+      //}
 
     }
     if (move == KeyEvent.VK_SPACE) {
@@ -205,7 +213,6 @@ public class movement {
   // Move Unicorn
   public void uniMov(int move) {
     Colision.setRectUni(Colision.rectUni);
-    Colision.colisionP1();
     if (move == KeyEvent.VK_RIGHT) {
       animateUni();
       posXUni += 5;
@@ -299,7 +306,7 @@ public class movement {
   } 
 
   public void createColision() {
-    Colision = new colision(posXSkl,posYSkl,posXUni,posYUni, moveStateSkl, moveStateUni, getSkeleton(),getUnicorn(),getSwordKnight());
+    Colision = new colision(posXSkl,posYSkl,posXUni,posYUni, posXSwordK, posYSwordK, moveStateSkl, moveStateUni, moveStateSwordK, getSkeleton(),getUnicorn(),getSwordKnight());
   }
 
 }

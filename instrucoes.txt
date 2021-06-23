@@ -1,0 +1,4 @@
+Utilize as teclas 1, 2 e 3 para mudar de personagem;
+Para movimentar os personagens, utlize as teclas direcionais;
+Como se trata de uma versão beta, apresenta alguns bugs e não está totalmente funcional;
+É uma versão protótipo de um jogo multiplayer!
