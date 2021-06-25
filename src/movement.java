@@ -8,121 +8,17 @@ import javax.swing.Timer;
 public class movement {
 
   Timer t = null;
-  Image Skeleton[] = new Image[9];
-  Image Unicorn[] = new Image[6];
-  Image SwordKnight[] = new Image[12];
-
-  final int RelaxSkl = 0;
-  final int AttSkl1 = 1;
-  final int AttSkl2 = 2;
-  final int DeadSkl1 = 3;
-  final int DeadSkl2 = 4;
-  final int WalkSkl1 = 5;
-  final int WalkSkl2 = 6;
-  final int WalkSkl3 = 7;
-  final int WalkSkl4 = 8;
-  final int WalkUni1 = 0;
-  final int WalkUni2 = 1;
-  final int WalkUni3 = 2;
-  final int WalkUni4 = 3;
-  final int DeadUni = 4;
-  final int AttkUni = 5;
-
-  final int Relax1SwordK = 0;
-  final int Relax2SwordK = 1;
-  final int Attk1SwordK = 2;
-  final int Attk2SwordK = 3;
-  final int Attk3SwordK = 4;
-  final int Attk4SwordK = 5;
-  final int Attk5SwordK = 6;
-  final int Attk6SwordK = 7;
-  final int Attk7SwordK = 8;
-  final int Walk1SwordK = 9;
-  final int Walk2SwordK = 10;
 
   int moveStateSkl = RelaxSkl;
   int moveStateUni = WalkUni1;
   int moveStateSwordK = Relax1SwordK;
-  int posXSkl = 350;
-  int posYSkl = 0;
-  int posXUni = 500;
-  int posYUni = 500;
-  int posXSwordK = 600;
-  int posYSwordK = 500;
 
   boolean validation = true;
   boolean attk = false;
   int character = 0;
-  Image background;
+  
 
   colision Colision;
-
-  public class Drawning extends JPanel {
-
-    Drawning() {
-
-      try {
-        setPreferredSize(new Dimension(1000, 600));
-        background = ImageIO.read(new File("../img/Background.JPG"));
-        // Skeleton Sprites imported
-        Skeleton[RelaxSkl] = ImageIO.read(new File("../img/Skeleton-Sprites/Relaxed-Skeleton.png"));
-        Skeleton[AttSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking1-Skeleton.png"));
-        Skeleton[AttSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking2-Skeleton.png"));
-        Skeleton[DeadSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Dead1-Skeleton.png"));
-        Skeleton[DeadSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Dead2-Skeleton.png"));
-        Skeleton[WalkSkl1] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking1-Skeleton.png"));
-        Skeleton[WalkSkl2] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking2-Skeleton.png"));
-        Skeleton[WalkSkl3] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking3-Skeleton.png"));
-        Skeleton[WalkSkl4] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking4-Skeleton.png"));
-        // Unicorn Sprites Imported
-        Unicorn[WalkUni1] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking1-Unicorn.png"));
-        Unicorn[WalkUni2] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking2-Unicorn.png"));
-        Unicorn[WalkUni3] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking3-Unicorn.png"));
-        Unicorn[WalkUni4] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking4-Unicorn.png"));
-        Unicorn[DeadUni] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Dead-Unicorn.png"));
-        Unicorn[AttkUni] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Attacking-Unicorn.png"));
-        // Sword Knight Imported
-        SwordKnight[Relax1SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight.png"));
-        SwordKnight[Relax2SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight.png"));
-        SwordKnight[Attk1SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking1-Sword-Knight.png"));
-        SwordKnight[Attk2SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking2-Sword-Knight.png"));
-        SwordKnight[Attk3SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking3-Sword-Knight.png"));
-        SwordKnight[Attk4SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking4-Sword-Knight.png"));
-        SwordKnight[Attk5SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking5-Sword-Knight.png"));
-        SwordKnight[Attk6SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking6-Sword-Knight.png"));
-        SwordKnight[Attk7SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking7-Sword-Knight.png"));
-        SwordKnight[Walk1SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Walking1-Sword-Knight.png"));
-        SwordKnight[Walk2SwordK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Walking2-Sword-Knight.png"));
-
-      } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "A imagem não pôde ser carregada!\n" + e, "Error",
-            JOptionPane.ERROR_MESSAGE);
-        System.exit(1);
-      }
-    }
-    public void paintComponent(Graphics g) {
-
-      if (validation) {
-        posYSkl = (getSize().height / 2) - Skeleton[RelaxSkl].getHeight(this);
-        validation = false;
-        posYSkl = (getSize().height / 2) - Skeleton[RelaxSkl].getHeight(this);
-      }
-      
-
-      super.paintComponent(g);
-      g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
-      g.drawImage(Skeleton[moveStateSkl], posXSkl, posYSkl, this);
-      g.drawImage(Unicorn[moveStateUni], posXUni, posYUni, this);
-      g.drawImage(SwordKnight[moveStateSwordK], posXSwordK, posYSwordK, this);
-      Toolkit.getDefaultToolkit().sync();
-      createColision();
-      Colision.paintComponent(g);
-      this.repaint();
-    }
-  }
-
-  // Declares a new Instance of Drawning Class to be used on pvpGame.
-  Drawning draw = new Drawning();
   
   public void moveP1(int move, String P1) {
     if (P1.equals("Skeleton")) {

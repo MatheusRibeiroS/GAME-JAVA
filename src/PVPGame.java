@@ -1,26 +1,24 @@
-//Gustavo Amaral Duarte Rego  RA: 201025817
-//Matheus Dos Santos Ribeiro Silva  RA: 201026406
+//  Gustavo Amaral Duarte Rego  RA: 201025817
+//  Matheus Dos Santos Ribeiro Silva  RA: 201026406   [july/2021]
 
 import java.awt.event.*;
 import javax.swing.*;
-
-
+import characters.*;
 
 class pvpGame extends JFrame {
-  int lifeSkl = 10;
-  int lifeUni = 10;
-  int lifeSwordK = 10;
+  //  public String globMove = "<3";
 
   String character = "Skeleton";
 
     //Declares a new Instance of movement to Access Inner Classes
     movement m = new movement();
+    paint p = new paint();
+    skeleton Skl = new skeleton();
     
 
   pvpGame() {
     super("PVP GAME");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    add(m.draw);
     pack();
     setVisible(true);
     
@@ -55,9 +53,9 @@ class pvpGame extends JFrame {
           m.createColision();
         }
         if(m.Colision.colisionP1(character) == 2 && c == KeyEvent.VK_SPACE) {
-          if(character.equals("Skeleton") && lifeSkl > 0) {
-            lifeSkl--;
-            System.out.println(character + " Life: " + lifeSkl);
+          if(character.equals("Skeleton") && Skl.getLife() > 0) {
+            Skl.setLife(Skl.getLife()-1);
+            System.out.println(character + " Life: " + Skl.getLife());
           }
         }
       }
