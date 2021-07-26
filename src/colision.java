@@ -1,18 +1,21 @@
+import characters.*;
 import java.awt.*;
 
-public class colision {
+
+public class Colision extends Movement {
   Rectangle rectSkl, rectUni, rectSwordK, attkUni, attkSkl, attkSwordK;
 
-  colision(int x1, int y1, int x2, int y2, int x3, int y3, int moveStateSkl, int moveStateUni, int moveStateSwordK,
-      Image Skeleton[], Image Unicorn[], Image SwordKnight[]) {
-    rectSkl = new Rectangle(x1, y1, Skeleton[moveStateSkl].getWidth(null), Skeleton[moveStateSkl].getHeight(null));
-    rectUni = new Rectangle(x2, y2, Unicorn[moveStateUni].getWidth(null) - 27, Unicorn[moveStateUni].getHeight(null));
-    rectSwordK = new Rectangle(x3, y3, SwordKnight[moveStateSwordK].getWidth(null),
-        SwordKnight[moveStateSwordK].getHeight(null));
-    attkSkl = new Rectangle(Skeleton[moveStateSkl].getWidth(null) + 10, Skeleton[moveStateSkl].getHeight(null), x1,
-        Skeleton[moveStateSkl].getHeight(null));
-    attkUni = new Rectangle(Unicorn[moveStateUni].getWidth(null) - 10, Unicorn[moveStateUni].getHeight(null) - 6,
-        Unicorn[moveStateUni].getWidth(null) + 10, Unicorn[moveStateUni].getWidth(null) + 10);
+  Colision() {
+    rectSkl = new Rectangle(Skeleton.skeleton.x, Skeleton.skeleton.y, Skeleton.skeleton.getSkeleton().getWidth(null),
+        Skeleton.skeleton.getSkeleton().getHeight(null));
+    rectUni = new Rectangle(UnicornKnight.unicornKnight.x, UnicornKnight.unicornKnight.y, UnicornKnight.unicornKnight.getUnicorn().getWidth(null) - 27,
+        UnicornKnight.unicornKnight.getUnicorn().getHeight(null));
+    rectSwordK = new Rectangle(SwordKnight.swordKnight.x, SwordKnight.swordKnight.y, SwordKnight.swordKnight.getSwordKnight().getWidth(null),
+        SwordKnight.swordKnight.getSwordKnight().getHeight(null));
+    attkSkl = new Rectangle(Skeleton.skeleton.getSkeleton().getWidth(null) + 10,
+        Skeleton.skeleton.getSkeleton().getHeight(null), Skeleton.skeleton.x, Skeleton.skeleton.getSkeleton().getHeight(null));
+    attkUni = new Rectangle(UnicornKnight.unicornKnight.getUnicorn().getWidth(null) - 10, UnicornKnight.unicornKnight.getUnicorn().getHeight(null) - 6,
+        UnicornKnight.unicornKnight.getUnicorn().getWidth(null) + 10, UnicornKnight.unicornKnight.getUnicorn().getWidth(null) + 10);
   }
 
   public int colisionP1(String character) {
@@ -66,5 +69,4 @@ public class colision {
   public void setRectSwordK(Rectangle rectSwordK) {
     this.rectSwordK = rectSwordK;
   }
-
 }

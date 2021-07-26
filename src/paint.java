@@ -4,17 +4,17 @@ import javax.swing.*;
 import characters.*;
 import javax.imageio.*;
 
-public class paint extends JPanel {
-  Image background;
+public class Paint extends JPanel {
+  public static Image background;
 
-  //create Instances of the characters
+  // Create Instances of the characters
 
-  skeleton Skl = new skeleton();
-  tridentKnight tKnight = new tridentKnight();
-  unicornKnight uni = new unicornKnight();
-  swordKnight sKnight = new swordKnight();
+  Skeleton Skl = new Skeleton();
+  UnicornKnight Uni = new UnicornKnight();
+  SwordKnight Sword = new SwordKnight();
+  // tridentKnight tKnight = new tridentKnight();
 
-  paint() {
+  public Paint() {
 
     try {
       setPreferredSize(new Dimension(1000, 600));
@@ -26,24 +26,23 @@ public class paint extends JPanel {
   }
 
   public void paintComponent(Graphics g) {
-    boolean validation;
+    boolean validation = true;
     int posXSkl = 350;
     int posYSkl = 0;
-  
+
     if (validation) {
-      posYSkl = (getSize().height / 2) - Skeleton[RelaxSkl].getHeight(this);
+      posYSkl = (getSize().height / 2) - Skeleton.skeleton.getSkeleton().getHeight(this);
       validation = false;
-      posYSkl = (getSize().height / 2) - Skeleton[RelaxSkl].getHeight(this);
+      posYSkl = (getSize().height / 2) - Skeleton.skeleton.getSkeleton().getHeight(this);
     }
-    
+
     super.paintComponent(g);
     g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
-    g.drawImage(Skl.getSprite(), Skl.getX(), Skl.getY(), this);
-    g.drawImage(uni.getSprite(), uni.getX(), uni.getY(), this);
-    g.drawImage(sKnight.getSprite(), sKnight.getX(), sKnight.getY(), this);
+    g.drawImage(Skeleton.skeleton.getSkeleton(), Skeleton.skeleton.x, Skeleton.skeleton.y, this);
+    g.drawImage(UnicornKnight.unicornKnight.getUnicorn(), UnicornKnight.unicornKnight.x, UnicornKnight.unicornKnight.y,
+        this);
+    g.drawImage(SwordKnight.swordKnight.getSwordKnight(), SwordKnight.swordKnight.x, SwordKnight.swordKnight.y, this);
     Toolkit.getDefaultToolkit().sync();
     this.repaint();
   }
-
 }
-

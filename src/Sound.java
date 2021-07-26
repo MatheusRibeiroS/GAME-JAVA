@@ -1,7 +1,7 @@
 import java.io.*;
 import javax.sound.sampled.*;
 
-public class sound {
+public class Sound {
     public static void main(String[] args) {
 
         try {

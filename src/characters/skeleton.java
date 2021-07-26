@@ -5,25 +5,33 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 
-public class skeleton {
-  private int life = 10;
-  private Image Sprite;
-  private int x, y;
+public class Skeleton {
+
+  public int life = 10;
+  public int x, y;
   private Rectangle rect;
+  public static Skeleton skeleton;
 
-  final int RELAXSKL = 0;
-  final int ATTSKL1 = 1;
-  final int ATTSKL2 = 2;
-  final int DEADSKL1 = 3;
-  final int DEADSKL2 = 4;
-  final int WALKSKL1 = 5;
-  final int WALKSKL2 = 6;
-  final int WalkSkl3 = 7;
-  final int WALKSKL4 = 8;
+  //  Static Initializer Block
+  static {
+    skeleton = new Skeleton();
+  }
 
-  public skeleton() {
+  public static final int RELAXSKL = 0;
+  public static final int ATTSKL1 = 1;
+  public static final int ATTSKL2 = 2;
+  public static final int DEADSKL1 = 3;
+  public static final int DEADSKL2 = 4;
+  public static final int WALKSKL1 = 5;
+  public static final int WALKSKL2 = 6;
+  public static final int WALKSKL3 = 7;
+  public static final int WALKSKL4 = 8;
+
+  public int sprite = 0;
+  public Image Skeleton[] = new Image[9];
+
+  public Skeleton() {
     try {
-      Image Skeleton[] = new Image[9];
       // SwordKnight Sprites
       Skeleton[RELAXSKL] = ImageIO.read(new File("../img/Skeleton-Sprites/Relaxed-Skeleton.png"));
       Skeleton[ATTSKL1] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking1-Skeleton.png"));
@@ -32,7 +40,7 @@ public class skeleton {
       Skeleton[DEADSKL2] = ImageIO.read(new File("../img/Skeleton-Sprites/Dead2-Skeleton.png"));
       Skeleton[WALKSKL1] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking1-Skeleton.png"));
       Skeleton[WALKSKL2] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking2-Skeleton.png"));
-      Skeleton[WalkSkl3] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking3-Skeleton.png"));
+      Skeleton[WALKSKL3] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking3-Skeleton.png"));
       Skeleton[WALKSKL4] = ImageIO.read(new File("../img/Skeleton-Sprites/Walking4-Skeleton.png"));
     } catch (IOException e) {
       JOptionPane.showMessageDialog(null, "A imagem não pôde ser carregada!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -40,36 +48,8 @@ public class skeleton {
     }
   }
 
-  public int getLife() {
-    return life;
-  }
-
-  public void setLife(int life) {
-    this.life = life;
-  }
-
-  public Image getSprite() {
-    return Sprite;
-  }
-
-  public void setSprite(Image Sprite) {
-    this.Sprite = Sprite;
-  }
-
-  public int getX() {
-    return x;
-  }
-
-  public void setX(int x) {
-    this.x = x;
-  }
-
-  public int getY() {
-    return y;
-  }
-
-  public void setY(int y) {
-    this.y = y;
+  public Image getSkeleton() {
+    return Skeleton[sprite];
   }
 
   public Rectangle getRect() {
@@ -79,6 +59,4 @@ public class skeleton {
   public void setRect(Rectangle rect) {
     this.rect = rect;
   }
-
-  
 }
