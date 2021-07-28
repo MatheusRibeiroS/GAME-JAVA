@@ -69,24 +69,23 @@ public class Movement extends Animate {
   public void uniMov(int move) {
     if (move == KeyEvent.VK_RIGHT) {
       animateUni();
-      animateUni();
       UnicornKnight.unicorn.x += ADD;
       // border value = 30
-      if (UnicornKnight.unicorn.x > Paint.background.getWidth(null) - 30) {
+      if (collision.collide("Unicorn") == 1 || UnicornKnight.unicorn.x > Paint.background.getWidth(null) - 30) {
         UnicornKnight.unicorn.x -= ADD;
       }
 
     } else if (move == KeyEvent.VK_LEFT) {
       animateUni();
       UnicornKnight.unicorn.x -= ADD;
-      if (UnicornKnight.unicorn.x < 0) {
+      if (collision.collide("Unicorn") == 1 || UnicornKnight.unicorn.x < 0) {
         UnicornKnight.unicorn.x += ADD;
       }
 
     } else if (move == KeyEvent.VK_UP) {
       animateUni();
       UnicornKnight.unicorn.y -= ADD;
-      if (UnicornKnight.unicorn.y < 110) {
+      if (collision.collide("Unicorn") == 1 || UnicornKnight.unicorn.y < 110) {
         UnicornKnight.unicorn.y += ADD;
       }
 
@@ -94,7 +93,7 @@ public class Movement extends Animate {
       animateUni();
       UnicornKnight.unicorn.y += ADD;
       // border value = 30
-      if (UnicornKnight.unicorn.y > Paint.background.getHeight(null) - 110) {
+      if (collision.collide("Unicorn") == 1 || UnicornKnight.unicorn.y > Paint.background.getHeight(null) - 110) {
         UnicornKnight.unicorn.y -= ADD;
       }
     } else if (move == KeyEvent.VK_SPACE) {
@@ -112,28 +111,28 @@ public class Movement extends Animate {
       animateSwordK();
       SwordKnight.sword.x += ADD;
       // border value = 30
-      if (SwordKnight.sword.x > Paint.background.getWidth(null) - 30) {
+      if (collision.collide("SwordKnight") == 1|| SwordKnight.sword.x > Paint.background.getWidth(null) - 30) {
         SwordKnight.sword.x -= ADD;
       }
 
     } else if (move == KeyEvent.VK_LEFT) {
       animateSwordK();
       SwordKnight.sword.x -= ADD;
-      if (SwordKnight.sword.x < 0) {
+      if (collision.collide("SwordKnight") == 1|| SwordKnight.sword.x < 0) {
         SwordKnight.sword.x += ADD;
       }
 
     } else if (move == KeyEvent.VK_UP) {
       animateSwordK();
       SwordKnight.sword.y -= ADD;
-      if (SwordKnight.sword.y < 110) {
+      if (collision.collide("SwordKnight") == 1|| SwordKnight.sword.y < 110) {
         SwordKnight.sword.y += ADD;
       }
 
     } else if (move == KeyEvent.VK_DOWN) {
       animateSwordK();
       SwordKnight.sword.y += ADD;
-      if (SwordKnight.sword.y > Paint.background.getHeight(null) - 110) {
+      if (collision.collide("SwordKnight") == 1|| SwordKnight.sword.y > Paint.background.getHeight(null) - 110) {
         SwordKnight.sword.y -= ADD;
       }
 

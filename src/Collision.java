@@ -1,5 +1,4 @@
 import characters.*;
-import java.awt.*;
 
 public class Collision {
 
@@ -21,22 +20,29 @@ public class Collision {
         return 1;
       }
     }
-    // if (character.equals("Unicorn")) {
-    // if (rectUni.intersects(rectskl) || rectUni.intersects(rectSwordK)) {
-    // return 1;
-    // }
-    // if (attkUni.intersects(rectskl) || attkUni.intersects(rectSwordK)) {
-    // return 2;
-    // }
-    // }
-    // if (character.equals("SwordKnight")) {
-    // if (rectSwordK.intersects(rectUni) || rectSwordK.intersects(rectskl)) {
-    // return 1;
-    // }
-    // if (attkSwordK.intersects(rectUni) || attkSwordK.intersects(rectskl)) {
-    // return 2;
-    // }
-    // }
+    if (character.equals("Unicorn")) {
+      if (UnicornKnight.unicorn.getRect().intersects(Skeleton.skl.getRect()) || UnicornKnight.unicorn.getRect().intersects(SwordKnight.sword.getRect())) {
+        return 1;
+      }
+    }
+    if (character.equals("SwordKnight")) {
+      if (SwordKnight.sword.getRect().intersects(UnicornKnight.unicorn.getRect()) || SwordKnight.sword.getRect().intersects(Skeleton.skl.getRect())) {
+        return 1;
+      }
+    }
     return 0;
   }
+
+  // public void attk(String character) {
+  //   if(character == "Skeleton") {
+  //     if(Skeleton.skl.getRect().intersects(UnicornKnight.unicorn.getRect())) {
+  //       UnicornKnight.unicorn.life --;
+  //       System.out.println(UnicornKnight.unicorn.life);
+  //     }
+  //     if(Skeleton.skl.getRect().intersects(SwordKnight.sword.getRect())) {
+  //       SwordKnight.sword.life --;
+  //       System.out.println(SwordKnight.sword.life);
+  //     }
+  //   }
+  // }
 }
