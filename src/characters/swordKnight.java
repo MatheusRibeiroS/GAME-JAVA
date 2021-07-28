@@ -31,7 +31,7 @@ public class SwordKnight {
 
   public SwordKnight() {
     try {
-      // Sword Knight Imported
+      // Sword Knight Sprites
       SwordKnight[RELAX1SWORDK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight.png"));
       SwordKnight[RELAX2SWORDK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight.png"));
       SwordKnight[ATTK1SWORDK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking1-Sword-Knight.png"));

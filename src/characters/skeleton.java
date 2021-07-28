@@ -32,7 +32,7 @@ public class Skeleton {
 
   public Skeleton() {
     try {
-      // SwordKnight Sprites
+      // Skeleton Sprites
       Skeleton[RELAXSKL] = ImageIO.read(new File("../img/Skeleton-Sprites/Relaxed-Skeleton.png"));
       Skeleton[ATTSKL1] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking1-Skeleton.png"));
       Skeleton[ATTSKL2] = ImageIO.read(new File("../img/Skeleton-Sprites/Attacking2-Skeleton.png"));

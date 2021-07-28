@@ -2,10 +2,10 @@ import characters.*;
 import java.awt.*;
 
 
-public class Colision extends Movement {
+public class Collision {
   Rectangle rectSkl, rectUni, rectSwordK, attkUni, attkSkl, attkSwordK;
 
-  Colision() {
+  Collision() {
     rectSkl = new Rectangle(Skeleton.skeleton.x, Skeleton.skeleton.y, Skeleton.skeleton.getSkeleton().getWidth(null),
         Skeleton.skeleton.getSkeleton().getHeight(null));
     rectUni = new Rectangle(UnicornKnight.unicornKnight.x, UnicornKnight.unicornKnight.y, UnicornKnight.unicornKnight.getUnicorn().getWidth(null) - 27,

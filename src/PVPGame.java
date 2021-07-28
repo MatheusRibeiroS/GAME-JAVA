@@ -6,20 +6,23 @@ import javax.swing.*;
 import characters.*;
 
 class PVPGame extends JFrame {
-  //  public String globMove = "<3";
-  
+  // public String globMove = "<3";
+
   String character = "Skeleton";
 
   // Declares a new Instance of movement to Access Inner Classes
   Movement m = new Movement();
-  Colision colision = new Colision();
+  Collision collision = new Collision();
+  Paint p = new Paint();
 
   PVPGame() {
 
     super("PVP GAME");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
+    add(p);
     pack();
     setVisible(true);
+
     addKeyListener(new KeyAdapter() {
       public void keyPressed(KeyEvent e) {
         int c = e.getKeyCode();
@@ -29,34 +32,36 @@ class PVPGame extends JFrame {
           character = "Unicorn";
         } else if (c == KeyEvent.VK_3) {
           character = "SwordKnight";
-        } /*else if(c == KeyEvent.VK_4) {
-          character = "TridentKnight";
-        }*/
-        m.moveP1(c, character);
-        while (colision.colisionP1(character) == 1) {
-          switch (c) {
-            case KeyEvent.VK_UP:
-              m.moveP1(KeyEvent.VK_DOWN, character);
-              break;
-            case KeyEvent.VK_DOWN:
-              m.moveP1(KeyEvent.VK_UP, character);
-              break;
-            case KeyEvent.VK_LEFT:
-              m.moveP1(KeyEvent.VK_RIGHT, character);
-              break;
-            case KeyEvent.VK_RIGHT:
-              m.moveP1(KeyEvent.VK_LEFT, character);
-              break;
-            default:
-              break;
+        } /*
+           * else if(c == KeyEvent.VK_4) { character = "TridentKnight"; }
+           */
+        new Thread(new Runnable() {
+          public void run() {
+            m.moveP1(c, character);
+            // switch (c) {
+            // case KeyEvent.VK_UP:
+            // m.moveP1(KeyEvent.VK_DOWN, character);
+            // break;
+            // case KeyEvent.VK_DOWN:
+            // m.moveP1(KeyEvent.VK_UP, character);
+            // break;
+            // case KeyEvent.VK_LEFT:
+            // m.moveP1(KeyEvent.VK_RIGHT, character);
+            // break;
+            // case KeyEvent.VK_RIGHT:
+            // m.moveP1(KeyEvent.VK_LEFT, character);
+            // break;
+            // default:
+            // break;
+            // }
+            if (collision.colisionP1(character) == 2 && c == KeyEvent.VK_SPACE) {
+              if (character.equals("Skeleton") && Skeleton.skeleton.life > 0) {
+                Skeleton.skeleton.life -= 1;
+                System.out.println(character + " Life: " + Skeleton.skeleton.life);
+              }
+            }
           }
-        }
-        if (colision.colisionP1(character) == 2 && c == KeyEvent.VK_SPACE) {
-          if (character.equals("Skeleton") && Skeleton.skeleton.life > 0) {
-            Skeleton.skeleton.life -= 1;
-            System.out.println(character + " Life: " + Skeleton.skeleton.life);
-          }
-        }
+        }).start();
       }
     });
   }

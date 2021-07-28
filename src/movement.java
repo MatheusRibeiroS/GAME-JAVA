@@ -1,22 +1,17 @@
-import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import java.io.*;
-import javax.imageio.*;
 import characters.*;
 
 public class Movement extends Animate {
 
-    Colision colision = new Colision();
-  
+  final int ADD = 7;
+
+  Collision collision = new Collision();
 
   public void moveP1(int move, String P1) {
     if (P1.equals("Skeleton")) {
-
       skelMov(move);
     }
     if (P1.equals("Unicorn")) {
-
       uniMov(move);
     }
     if (P1.equals("SwordKnight")) {
@@ -26,33 +21,35 @@ public class Movement extends Animate {
      * if (P1.equals("TridenKnight")) { tKnightMov(move); }
      */
   }
+
   // Move Skeleton
   public void skelMov(int move) {
     if (move == KeyEvent.VK_RIGHT) {
-
+      Skeleton.skeleton.x += ADD;
       animateSkel();
-      if(Skeleton.skeleton.x < Paint.background.getWidth(null)) {
-       Skeleton.skeleton.x += ADD;
+      if (Skeleton.skeleton.x > Paint.background.getWidth(null)) {
+        Skeleton.skeleton.x -= ADD;
       }
-
     }
     if (move == KeyEvent.VK_LEFT) {
-      animateSkel();
-      if(Skeleton.skeleton.x < Paint.background.getWidth(null)) {
       Skeleton.skeleton.x -= ADD;
+      animateSkel();
+      if (Skeleton.skeleton.x < Paint.background.getWidth(null)) {
+        //Skeleton.skeleton.x += ADD;
       }
     }
     if (move == KeyEvent.VK_UP) {
-      animateSkel();
-      if(Skeleton.skeleton.x > Paint.background.getHeight(null)) {
       Skeleton.skeleton.y -= ADD;
+      animateSkel();
+      if (Skeleton.skeleton.y < Paint.background.getHeight(null)) {
+        //Skeleton.skeleton.y += ADD;
       }
     }
     if (move == KeyEvent.VK_DOWN) {
-
-      animateSkel();
-      if(Skeleton.skeleton.y < Paint.background.getHeight(null)) {
       Skeleton.skeleton.y += ADD;
+      animateSkel();
+      if (Skeleton.skeleton.y > Paint.background.getHeight(null)) {
+        Skeleton.skeleton.y -= ADD;
       }
     }
     if (move == KeyEvent.VK_SPACE) {
@@ -117,5 +114,5 @@ public class Movement extends Animate {
         t.start();
       }
     }
-    }
+  }
 }

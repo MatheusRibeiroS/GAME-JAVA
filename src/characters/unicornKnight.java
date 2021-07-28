@@ -28,7 +28,7 @@ public class UnicornKnight {
 
   public UnicornKnight() {
     try {
-      // Unicorn Sprites Imported
+      // UnicornKnight Sprites Imported
       Unicorn[WALKUNI1] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking1-Unicorn.png"));
       Unicorn[WALKUNI2] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking2-Unicorn.png"));
       Unicorn[WALKUNI3] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking3-Unicorn.png"));

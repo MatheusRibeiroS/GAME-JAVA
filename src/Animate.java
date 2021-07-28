@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class Animate {
 
-  final int ADD = 5;
   int character = 0;
   int moveStateSkl = 0;
   int moveStateUni = 0;
