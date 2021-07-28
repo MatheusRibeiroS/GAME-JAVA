@@ -8,13 +8,12 @@ import javax.imageio.*;
 public class Skeleton {
 
   public int life = 10;
-  public int x, y;
-  private Rectangle rect;
-  public static Skeleton skeleton;
+  public int x = 150, y = 150;
+  public static Skeleton skl;
 
   //  Static Initializer Block
   static {
-    skeleton = new Skeleton();
+    skl = new Skeleton();
   }
 
   public static final int RELAXSKL = 0;
@@ -27,7 +26,7 @@ public class Skeleton {
   public static final int WALKSKL3 = 7;
   public static final int WALKSKL4 = 8;
 
-  public int sprite = 0;
+  private int sprite = 0;
   public Image Skeleton[] = new Image[9];
 
   public Skeleton() {
@@ -53,10 +52,15 @@ public class Skeleton {
   }
 
   public Rectangle getRect() {
-    return rect;
+    return new Rectangle(x, y, getSkeleton().getWidth(null), getSkeleton().getHeight(null));
   }
 
-  public void setRect(Rectangle rect) {
-    this.rect = rect;
+  public int getSprite() {
+    return this.sprite;
   }
+
+  public void setSprite(int sprite) {
+    this.sprite = sprite;
+  }
+  
 }

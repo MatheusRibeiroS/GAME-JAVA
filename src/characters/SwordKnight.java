@@ -7,12 +7,11 @@ import javax.imageio.*;
 
 public class SwordKnight {
   public int life = 10;
-  public int x, y;
+  public int x = 200, y = 200;
   private int sprite = 0;
-  private Rectangle rect;
-  public static SwordKnight swordKnight;
+  public static SwordKnight sword;
   static {
-    swordKnight = new SwordKnight();
+    sword = new SwordKnight();
   }
 
   public static final int RELAX1SWORDK = 0;
@@ -55,11 +54,13 @@ public class SwordKnight {
   }
 
   public Rectangle getRect() {
-    return rect;
+    return new Rectangle(x, y, getSwordKnight().getWidth(null), getSwordKnight().getHeight(null));
   }
 
-  public void setRect(Rectangle rect) {
-    this.rect = rect;
+  public int getSprite() {
+    return this.sprite;
   }
-
+  public void setSprite(int sprite) {
+    this.sprite = sprite;
+  }
 }
