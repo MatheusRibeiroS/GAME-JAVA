@@ -7,18 +7,11 @@ import javax.imageio.*;
 public class Paint extends JPanel {
   public static Image background;
 
-  // Create Instances of the characters
-
-  Skeleton Skl = new Skeleton();
-  UnicornKnight Uni = new UnicornKnight();
-  SwordKnight Sword = new SwordKnight();
-  // tridentKnight tKnight = new tridentKnight();
-
   public Paint() {
 
     try {
-      setPreferredSize(new Dimension(1000, 600));
       background = ImageIO.read(new File("../img/Background.JPG"));
+      setPreferredSize(new Dimension(background.getWidth(null), background.getHeight(null)));
     } catch (IOException e) {
       JOptionPane.showMessageDialog(this, "A imagem não pôde ser carregada!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
       System.exit(1);
@@ -26,22 +19,13 @@ public class Paint extends JPanel {
   }
 
   public void paintComponent(Graphics g) {
-    boolean validation = true;
-    int posXSkl = 350;
-    int posYSkl = 0;
-
-    if (validation) {
-      posYSkl = (getSize().height / 2) - Skeleton.skeleton.getSkeleton().getHeight(this);
-      validation = false;
-      posYSkl = (getSize().height / 2) - Skeleton.skeleton.getSkeleton().getHeight(this);
-    }
 
     super.paintComponent(g);
     g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
-    g.drawImage(Skeleton.skeleton.getSkeleton(), Skeleton.skeleton.x, Skeleton.skeleton.y, this);
-    g.drawImage(UnicornKnight.unicornKnight.getUnicorn(), UnicornKnight.unicornKnight.x, UnicornKnight.unicornKnight.y,
-        this);
-    g.drawImage(SwordKnight.swordKnight.getSwordKnight(), SwordKnight.swordKnight.x, SwordKnight.swordKnight.y, this);
+    g.drawImage(Skeleton.skl.getSkeleton(), Skeleton.skl.x, Skeleton.skl.y, this);
+    g.drawImage(UnicornKnight.unicorn.getUnicorn(), UnicornKnight.unicorn.x, UnicornKnight.unicorn.y,
+      this);
+    g.drawImage(SwordKnight.sword.getSwordKnight(), SwordKnight.sword.x, SwordKnight.sword.y, this);
     Toolkit.getDefaultToolkit().sync();
     this.repaint();
   }

@@ -21,6 +21,7 @@ class PVPGame extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(p);
     pack();
+    setResizable(false);
     setVisible(true);
 
     addKeyListener(new KeyAdapter() {
@@ -38,26 +39,10 @@ class PVPGame extends JFrame {
         new Thread(new Runnable() {
           public void run() {
             m.moveP1(c, character);
-            // switch (c) {
-            // case KeyEvent.VK_UP:
-            // m.moveP1(KeyEvent.VK_DOWN, character);
-            // break;
-            // case KeyEvent.VK_DOWN:
-            // m.moveP1(KeyEvent.VK_UP, character);
-            // break;
-            // case KeyEvent.VK_LEFT:
-            // m.moveP1(KeyEvent.VK_RIGHT, character);
-            // break;
-            // case KeyEvent.VK_RIGHT:
-            // m.moveP1(KeyEvent.VK_LEFT, character);
-            // break;
-            // default:
-            // break;
-            // }
-            if (collision.colisionP1(character) == 2 && c == KeyEvent.VK_SPACE) {
-              if (character.equals("Skeleton") && Skeleton.skeleton.life > 0) {
-                Skeleton.skeleton.life -= 1;
-                System.out.println(character + " Life: " + Skeleton.skeleton.life);
+            if (collision.collide(character) == 2 && c == KeyEvent.VK_SPACE) {
+              if (character.equals("Skeleton") && Skeleton.skl.life > 0) {
+                Skeleton.skl.life -= 1;
+                System.out.println(character + " Life: " + Skeleton.skl.life);
               }
             }
           }

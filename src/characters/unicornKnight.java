@@ -7,14 +7,13 @@ import javax.imageio.*;
 
 public class UnicornKnight {
   public int life = 10;
-  public int x, y;
+  public int x = 252, y = 150;
   public int sprite = 0;
-  private Rectangle rect;
 
-  public static UnicornKnight unicornKnight;
+  public static UnicornKnight unicorn;
   // Static Initializer Block
   static {
-    unicornKnight = new UnicornKnight();
+    unicorn = new UnicornKnight();
   }
 
   public static final int WALKUNI1 = 0;
@@ -46,10 +45,15 @@ public class UnicornKnight {
   }
 
   public Rectangle getRect() {
-    return rect;
+    return new Rectangle(x, y, getUnicorn().getWidth(null), getUnicorn().getHeight(null));
   }
 
-  public void setRect(Rectangle rect) {
-    this.rect = rect;
+  public int getSprite() {
+    return this.sprite;
   }
+
+  public void setSprite(int sprite) {
+    this.sprite = sprite;
+  }
+
 }
