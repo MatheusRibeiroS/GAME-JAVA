@@ -23,9 +23,14 @@ public class Paint extends JPanel {
     super.paintComponent(g);
     g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
     g.drawImage(Skeleton.skl.getSkeleton(), Skeleton.skl.x, Skeleton.skl.y, this);
-    g.drawImage(UnicornKnight.unicorn.getUnicorn(), UnicornKnight.unicorn.x, UnicornKnight.unicorn.y,
-      this);
+    g.drawImage(UnicornKnight.unicorn.getUnicorn(), UnicornKnight.unicorn.x, UnicornKnight.unicorn.y, this);
     g.drawImage(SwordKnight.sword.getSwordKnight(), SwordKnight.sword.x, SwordKnight.sword.y, this);
+    // g.drawRect(UnicornKnight.unicorn.x, UnicornKnight.unicorn.y, (int) UnicornKnight.unicorn.getRect().getWidth(),
+    //     (int) UnicornKnight.unicorn.getRect().getHeight());
+    // g.drawRect(Skeleton.skl.x, Skeleton.skl.y, (int) Skeleton.skl.getRect().getWidth(),
+    //     (int) Skeleton.skl.getRect().getHeight());
+    // g.drawRect(SwordKnight.sword.x, SwordKnight.sword.y, (int) SwordKnight.sword.getRect().getHeight(),
+    //     (int) SwordKnight.sword.getRect().getHeight());
     Toolkit.getDefaultToolkit().sync();
     this.repaint();
   }

@@ -49,6 +49,11 @@ public class SwordKnight {
     }
   }
 
+  public void damage() {
+    life --;
+    System.out.println("A vida do Cavaleiro eh: " + life);
+  }
+
   public Image getSwordKnight() {
     return SwordKnight[sprite];
   }

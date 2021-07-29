@@ -97,6 +97,7 @@ public class Movement extends Animate {
         UnicornKnight.unicorn.y -= ADD;
       }
     } else if (move == KeyEvent.VK_SPACE) {
+      collision.attk("Unicorn");
       if (UnicornKnight.unicorn.getSprite() != UnicornKnight.ATTKUNI) {
         UnicornKnight.unicorn.setSprite(UnicornKnight.ATTKUNI);
       } else {
@@ -138,6 +139,7 @@ public class Movement extends Animate {
 
     } else if (move == KeyEvent.VK_SPACE) {
       if (!attk) {
+        collision.attk("SwordKnight");
         t.start();
       }
     }

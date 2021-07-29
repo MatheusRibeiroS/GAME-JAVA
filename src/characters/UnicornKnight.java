@@ -40,12 +40,20 @@ public class UnicornKnight {
     }
   }
 
+  public void damage() {
+    life --;
+    System.out.println("A vida do Unicórnio eh: " + life);
+  }
+
   public Image getUnicorn() {
     return Unicorn[sprite];
   }
 
   public Rectangle getRect() {
-    return new Rectangle(x, y, getUnicorn().getWidth(null), getUnicorn().getHeight(null));
+    if(sprite != ATTKUNI) {
+      return new Rectangle(x, y, getUnicorn().getWidth(null)-30, getUnicorn().getHeight(null));
+    }
+    return new Rectangle(x+15, y+10, getUnicorn().getWidth(null), getUnicorn().getHeight(null)-10);
   }
 
   public int getSprite() {

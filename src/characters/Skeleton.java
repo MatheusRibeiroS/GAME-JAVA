@@ -47,6 +47,11 @@ public class Skeleton {
     }
   }
 
+  public void damage() {
+    this.life --;
+    System.out.println("A vida do Esqueleto eh: " + life);
+  }
+
   public Image getSkeleton() {
     return Skeleton[sprite];
   }
