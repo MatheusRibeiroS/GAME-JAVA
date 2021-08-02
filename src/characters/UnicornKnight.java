@@ -9,6 +9,7 @@ public class UnicornKnight {
   public int life = 10;
   public int x = 252, y = 150;
   public int sprite = 0;
+  public boolean isLeft = false;
 
   public static UnicornKnight unicorn;
   // Static Initializer Block
@@ -22,8 +23,14 @@ public class UnicornKnight {
   public static final int WALKUNI4 = 3;
   public static final int DEADUNI = 4;
   public static final int ATTKUNI = 5;
+  public static final int WALKUNI1_L = 6;
+  public static final int WALKUNI2_L = 7;
+  public static final int WALKUNI3_L = 8;
+  public static final int WALKUNI4_L = 9;
+  public static final int DEADUNI_L = 10;
+  public static final int ATTKUNI_L = 11;
 
-  public Image Unicorn[] = new Image[6];
+  public Image Unicorn[] = new Image[13];
 
   public UnicornKnight() {
     try {
@@ -34,6 +41,12 @@ public class UnicornKnight {
       Unicorn[WALKUNI4] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking4-Unicorn.png"));
       Unicorn[DEADUNI] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Dead-Unicorn.png"));
       Unicorn[ATTKUNI] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Attacking-Unicorn.png"));
+      Unicorn[WALKUNI1_L] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking1-Unicorn-left.png"));
+      Unicorn[WALKUNI2_L] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking2-Unicorn-left.png"));
+      Unicorn[WALKUNI3_L] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking3-Unicorn-left.png"));
+      Unicorn[WALKUNI4_L] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Walking4-Unicorn-left.png"));
+      Unicorn[DEADUNI_L] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Dead-Unicorn-left.png"));
+      Unicorn[ATTKUNI_L] = ImageIO.read(new File("../img/Unicorn-Knight-Sprites/Attacking-Unicorn-left.png"));
     } catch (IOException e) {
       JOptionPane.showMessageDialog(null, "A imagem não pôde ser carregada!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
       System.exit(1);
@@ -41,8 +54,10 @@ public class UnicornKnight {
   }
 
   public void damage() {
-    life --;
-    System.out.println("A vida do Unicórnio eh: " + life);
+    if(life > 0) {
+      life --;
+      System.out.println("A vida do Unicornio eh: " + life);
+    }
   }
 
   public Image getUnicorn() {
@@ -50,10 +65,7 @@ public class UnicornKnight {
   }
 
   public Rectangle getRect() {
-    if(sprite != ATTKUNI) {
-      return new Rectangle(x, y, getUnicorn().getWidth(null)-30, getUnicorn().getHeight(null));
-    }
-    return new Rectangle(x+15, y+10, getUnicorn().getWidth(null), getUnicorn().getHeight(null)-10);
+    return new Rectangle(x, y, getUnicorn().getWidth(null), getUnicorn().getHeight(null));
   }
 
   public int getSprite() {
