@@ -78,7 +78,10 @@ public class Movement extends Animate {
   // Move Unicorn
   public void uniMov(int move) {
     if (move == KeyEvent.VK_RIGHT) {
-      UnicornKnight.unicorn.isLeft = false;
+      if(UnicornKnight.unicorn.isLeft) {
+        UnicornKnight.unicorn.x += 2*ADD;
+        UnicornKnight.unicorn.isLeft = false;
+      }
       animateUni();
       UnicornKnight.unicorn.x += ADD;
       // border value = 30
@@ -87,7 +90,10 @@ public class Movement extends Animate {
       }
 
     } else if (move == KeyEvent.VK_LEFT) {
-      UnicornKnight.unicorn.isLeft = true;
+      if(!UnicornKnight.unicorn.isLeft) {
+        UnicornKnight.unicorn.x -= 2*ADD;
+        UnicornKnight.unicorn.isLeft = true;
+      }
       animateUni();
       UnicornKnight.unicorn.x -= ADD;
       if (collision.collide("Unicorn") == 1 || UnicornKnight.unicorn.x < 0) {
@@ -112,8 +118,10 @@ public class Movement extends Animate {
       collision.attk("Unicorn");
       if(UnicornKnight.unicorn.isLeft) {
         if(UnicornKnight.unicorn.sprite != UnicornKnight.ATTKUNI_L) {
+          UnicornKnight.unicorn.x -= ADD;
           UnicornKnight.unicorn.sprite = UnicornKnight.ATTKUNI_L;
         } else {
+          UnicornKnight.unicorn.x += ADD;
           UnicornKnight.unicorn.sprite = UnicornKnight.WALKUNI1_L;
         }
       } else {
@@ -161,7 +169,6 @@ public class Movement extends Animate {
 
     } else if (move == KeyEvent.VK_SPACE) {
       if (!attk) {
-        collision.attk("SwordKnight");
         t.start();
       }
     }

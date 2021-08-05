@@ -7,6 +7,7 @@ public class Animate {
   int character = 0;
   boolean validation = true;
   boolean attk = false;
+  Collision c = new Collision();
 
   public void animateSkel() {
     if ((Skeleton.skl.getSprite() == Skeleton.RELAXSKL) || (Skeleton.skl.getSprite() == Skeleton.WALKSKL4)
@@ -135,8 +136,11 @@ public class Animate {
       } else if (SwordKnight.sword.getSprite() == SwordKnight.ATTK5SWORDK
           || SwordKnight.sword.getSprite() == SwordKnight.ATTK5SWORDK_L) {
         if (SwordKnight.sword.isLeft) {
+          SwordKnight.sword.x -= 5;
+          c.attk("SwordKnight");
           SwordKnight.sword.setSprite(SwordKnight.ATTK6SWORDK_L);
         } else {
+          c.attk("SwordKnight");
           SwordKnight.sword.setSprite(SwordKnight.ATTK6SWORDK);
         }
       } else if (SwordKnight.sword.getSprite() == SwordKnight.ATTK6SWORDK
@@ -144,6 +148,7 @@ public class Animate {
         if (SwordKnight.sword.isLeft) {
           SwordKnight.sword.setSprite(SwordKnight.ATTK7SWORDK_L);
         } else {
+          SwordKnight.sword.x += 5;
           SwordKnight.sword.setSprite(SwordKnight.ATTK7SWORDK);
         }
       } else if (SwordKnight.sword.getSprite() == SwordKnight.ATTK7SWORDK

@@ -1,6 +1,9 @@
 package characters;
 
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
+
 import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
@@ -55,15 +58,24 @@ public class SwordKnight {
       SwordKnight[ATTK7SWORDK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking7-Sword-Knight.png"));
       SwordKnight[WALK1SWORDK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Walking1-Sword-Knight.png"));
       SwordKnight[WALK2SWORDK] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Walking2-Sword-Knight.png"));
-      SwordKnight[RELAX1SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight-left.png"));
-      SwordKnight[RELAX2SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight-left.png"));
-      SwordKnight[ATTK1SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking1-Sword-Knight-left.png"));
-      SwordKnight[ATTK2SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking2-Sword-Knight-left.png"));
-      SwordKnight[ATTK3SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking3-Sword-Knight-left.png"));
-      SwordKnight[ATTK4SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking4-Sword-Knight-left.png"));
-      SwordKnight[ATTK5SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking5-Sword-Knight-left.png"));
-      SwordKnight[ATTK6SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking6-Sword-Knight-left.png"));
-      SwordKnight[ATTK7SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Attacking7-Sword-Knight-left.png"));
+      SwordKnight[RELAX1SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight-left.png"));
+      SwordKnight[RELAX2SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight-left.png"));
+      SwordKnight[ATTK1SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking1-Sword-Knight-left.png"));
+      SwordKnight[ATTK2SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking2-Sword-Knight-left.png"));
+      SwordKnight[ATTK3SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking3-Sword-Knight-left.png"));
+      SwordKnight[ATTK4SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking4-Sword-Knight-left.png"));
+      SwordKnight[ATTK5SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking5-Sword-Knight-left.png"));
+      SwordKnight[ATTK6SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking6-Sword-Knight-left.png"));
+      SwordKnight[ATTK7SWORDK_L] = ImageIO
+          .read(new File("../img/Sword-Knight-Sprites/Attacking7-Sword-Knight-left.png"));
       SwordKnight[WALK1SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Walking1-Sword-Knight-left.png"));
       SwordKnight[WALK2SWORDK_L] = ImageIO.read(new File("../img/Sword-Knight-Sprites/Walking2-Sword-Knight-left.png"));
 
@@ -74,8 +86,8 @@ public class SwordKnight {
   }
 
   public void damage() {
-    if(life > 0) {
-      life --;
+    if (life > 0) {
+      life--;
       System.out.println("A vida do Cavaleiro eh: " + life);
     }
   }
@@ -91,6 +103,7 @@ public class SwordKnight {
   public int getSprite() {
     return this.sprite;
   }
+
   public void setSprite(int sprite) {
     this.sprite = sprite;
   }

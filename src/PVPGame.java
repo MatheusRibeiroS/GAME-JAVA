@@ -39,12 +39,6 @@ class PVPGame extends JFrame {
         new Thread(new Runnable() {
           public void run() {
             m.moveP1(c, character);
-            if (collision.collide(character) == 2 && c == KeyEvent.VK_SPACE) {
-              if (character.equals("Skeleton") && Skeleton.skl.life > 0) {
-                Skeleton.skl.life -= 1;
-                System.out.println(character + " Life: " + Skeleton.skl.life);
-              }
-            }
           }
         }).start();
       }

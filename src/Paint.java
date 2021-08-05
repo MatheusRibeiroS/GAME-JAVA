@@ -1,7 +1,5 @@
 import java.awt.*;
 import java.io.*;
-import java.lang.Character.UnicodeScript;
-
 import javax.swing.*;
 import characters.*;
 import javax.imageio.*;
@@ -33,7 +31,7 @@ public class Paint extends JPanel {
         (int) UnicornKnight.unicorn.getRect().getHeight());
     g.drawRect(Skeleton.skl.x, Skeleton.skl.y, (int) Skeleton.skl.getRect().getWidth(),
         (int) Skeleton.skl.getRect().getHeight());
-    g.drawRect(SwordKnight.sword.x, SwordKnight.sword.y, (int) SwordKnight.sword.getRect().getHeight(),
+    g.drawRect(SwordKnight.sword.x, SwordKnight.sword.y, (int) SwordKnight.sword.getRect().getWidth(),
         (int) SwordKnight.sword.getRect().getHeight());
     Toolkit.getDefaultToolkit().sync();
     this.repaint();

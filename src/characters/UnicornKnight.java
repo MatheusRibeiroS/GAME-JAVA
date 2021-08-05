@@ -65,7 +65,14 @@ public class UnicornKnight {
   }
 
   public Rectangle getRect() {
-    return new Rectangle(x, y, getUnicorn().getWidth(null), getUnicorn().getHeight(null));
+    if (sprite == ATTKUNI || sprite == ATTKUNI_L) {
+      return new Rectangle(x, y, getUnicorn().getWidth(null), getUnicorn().getHeight(null));
+    }
+    if(isLeft) {
+      return new Rectangle(x+25, y, getUnicorn().getWidth(null) - 30 , getUnicorn().getHeight(null));
+    } else {
+      return new Rectangle(x, y, getUnicorn().getWidth(null) - 30, getUnicorn().getHeight(null));
+    }
   }
 
   public int getSprite() {
