@@ -1,7 +1,6 @@
 package Server;
 import java.io.*;
 import java.net.*;
-
 public class Server {
 
   final static int port = 8080;
@@ -23,7 +22,7 @@ public class Server {
       Socket client = null;
 
       try {
-        System.out.println("Esperando conexão com um jogador...");
+        System.out.println("Waiting connection with player...");
         client = server.accept();
       } catch (IOException e) {
         System.out.println("Failed to connect to server: " + port);
