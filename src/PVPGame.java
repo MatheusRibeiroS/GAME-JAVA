@@ -8,6 +8,7 @@ import characters.*;
 class PVPGame extends JFrame {
   // public String globMove = "<3";
 
+  // initial value (initial character)
   String character = "Skeleton";
 
   // Declares a new Instance of movement to Access Inner Classes
