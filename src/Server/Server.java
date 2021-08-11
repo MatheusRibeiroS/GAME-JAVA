@@ -1,41 +1,39 @@
-package Server;
-import java.io.*;
-import java.net.*;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Server {
 
-  final static int port = 8080;
-  Socket client;
+  public static void main(String[] args) throws IOException {
 
-  public static void main(String[] args) {
-    ServerSocket server = null;
+    ServerSocket serverSocket = null;
+    int port = 12345;
 
     try {
-      server = new ServerSocket(port);
+      serverSocket = new ServerSocket(port);
     } catch (IOException e) {
-      System.out.println("Could not listen to port: " + port + ".\n" + e);
+      System.out.println("Could not listen port: " + port + ".\n" + e);
       System.exit(1);
     }
-    System.out.println("Server is running....");
-    System.out.println("Listening on port: " + port);
-
-    for (int i = 0; i < 3; i++) {
-      Socket client = null;
-
-      try {
-        System.out.println("Waiting connection with player...");
-        client = server.accept();
-      } catch (IOException e) {
-        System.out.println("Failed to connect to server: " + port);
-        System.out.println("Error: " + e);
-        System.exit(1);
+    while (true) {
+      IJogo jogo = new Jogo(2);
+      int numMaximoJogadores = jogo.numMaximoJogadores();
+      for (int i = 0; i < numMaximoJogadores; i++) {
+        Socket clientSocket = null;
+        try {
+          System.out.println("Esperando conexao de um jogador.");
+          clientSocket = serverSocket.accept();
+        } catch (IOException e) {
+          System.out.println("Accept falhou: " + port + ".\n" + e);
+          System.exit(1);
+        }
+        System.out.println("Accept Funcionou!");
+        jogo.adicionaJogador(clientSocket);
       }
-
-      System.out.println("Player " + (i + 1) + " just entered the game.");
-    }
-    try {
-      server.close();
-    } catch (IOException e) {
-      e.printStackTrace();
+      jogo.iniciaLogica(new Logic(jogo));
+      jogo.inicia();
+      System.out.println("O jogo foi iniciado");
     }
   }
 }
