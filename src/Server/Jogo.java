@@ -15,14 +15,14 @@ class Jogo extends Thread implements IJogo {
   Logic logica;
   int MaximoJogadores, jogadoresAtuais = 0;
   int key, keyEnemy;
-  public static int life;
-  public static int enemyLife;
+  public int life;
+  public int enemyLife;
 
-  public static int[] posP1 = { 200, 200, 27, 38 };
-  public static int[] posP2 = { 250, 250, 27, 38 };
+  public int[] posP1 = { 200, 200, 27, 38 };
+  public int[] posP2 = { 250, 250, 27, 38 };
 
-  public static boolean isLeftP1 = false;
-  public static boolean isLeftP2 = true;
+  public boolean isLeftP1 = false;
+  public boolean isLeftP2 = true;
 
   Jogo(int numMaximoJogadores) {
     MaximoJogadores = numMaximoJogadores;
@@ -45,24 +45,11 @@ class Jogo extends Thread implements IJogo {
           do {
             if (numDoJogador == 0) {
               key = is[0].readInt();
-              posP1[0] = is[0].read();
-              posP1[1] = is[0].read();
-              posP1[2] = is[0].read();
-              posP1[3] = is[0].read();
-              life = is[0].readInt();
-              Logic.estadoP1 = is[0].readInt();
+
               logica.moveP1(key);
-              Logic.collide();
             } else {
               keyEnemy = is[1].readInt();
-              posP2[0] = is[1].read();
-              posP2[1] = is[1].read();
-              posP2[2] = is[1].read();
-              posP2[3] = is[1].read();
-              enemyLife = is[1].readInt();
-              Logic.estadoP2 = is[1].readInt();
               logica.moveP2(keyEnemy);
-              Logic.collide();
             }
 
           } while (clienteVivo[numJogador] && clienteVivo[numAdversario]);

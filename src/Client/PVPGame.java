@@ -29,14 +29,16 @@ public class PVPGame extends JFrame {
   int keyEnemy = 0;
   Thread t;
   Paint paint;
-  public static int life = 5;
-  public static int enemyLife = 5;
-  public static int[] posP1 = { 200, 200, 27, 38 };
-  public static int[] posP2 = { 250, 250, 27, 38 };
+  public int life = 5;
+  public int enemyLife = 5;
+  public int[] posP1 = { 200, 200, 27, 38 };
+  public int[] posP2 = { 250, 250, 27, 38 };
   int dirAdversario = -1;
   int numPlayer;
   int spriteP1 = 0;
   int spriteP2 = 0;
+  Player p1 = new Player();
+  Player p2 = new Player();
 
   PVPGame() {
     super("PVP GAME");
@@ -74,23 +76,11 @@ public class PVPGame extends JFrame {
               // Thread.sleep(10);
               if (numPlayer == 0) {
                 os.writeInt(key);
-                os.write(posP1[0]);
-                os.write(posP1[1]);
-                os.write(posP1[2]);
-                os.write(posP1[3]);
-                os.writeInt(life);
-                os.writeInt(spriteP1);
+
               } else {
                 os.writeInt(key);
-                os.write(posP2[0]);
-                os.write(posP2[1]);
-                os.write(posP2[2]);
-                os.write(posP2[3]);
-                os.writeInt(enemyLife);
-                os.writeInt(spriteP2);
+
               }
-              System.out.println(posP1[0]);
-              System.out.println(posP1[1]);
               forcaEnvio();
 
             } catch (IOException error) {
@@ -150,9 +140,12 @@ public class PVPGame extends JFrame {
 
       super.paintComponent(g);
       g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
-
-      g.drawImage(P1.getSprite(), posP1[0], posP1[1], this);
-      g.drawImage(P1.getSprite(), posP2[0], posP2[1], this);
+      if (p1.life > 0) {
+      g.drawImage(p1.getSprite(), p1.x, p1.y, this);
+      }
+      if(p2.life > 0){
+      g.drawImage(p2.getSprite(), p2.x, p2.y, this);
+      }
       g.drawRect(posP1[0], posP1[1], posP1[2], posP1[3]);
       g.drawRect(posP2[0], posP2[1], posP2[2], posP2[3]);
 
@@ -170,18 +163,24 @@ public class PVPGame extends JFrame {
           is = new DataInputStream(socket.getInputStream());
           while (true) {
             numPlayer = is.readInt();
-            posP1[0] = is.read();
-            posP1[1] = is.read();
-            posP1[2] = is.read();
-            posP1[3] = is.read();
+            posP1[0] = is.readInt();
+            posP1[1] = is.readInt();
+            posP1[2] = is.readInt();
+            posP1[3] = is.readInt();
             life = is.readInt();
             spriteP1 = is.readInt();
-            posP2[0] = is.read();
-            posP2[1] = is.read();
-            posP2[2] = is.read();
-            posP2[3] = is.read();
+            p1.x = posP1[0];
+            p1.y = posP1[1];
+            p1.setSprite(spriteP1);
+            posP2[0] = is.readInt();
+            posP2[1] = is.readInt();
+            posP2[2] = is.readInt();
+            posP2[3] = is.readInt();
             enemyLife = is.readInt();
             spriteP2 = is.readInt();
+            p2.x = posP2[0];
+            p2.y = posP2[1];
+            p2.setSprite(spriteP2);
             repaint();
           }
         } catch (UnknownHostException e) {

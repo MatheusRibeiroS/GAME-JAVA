@@ -1,14 +1,13 @@
-
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 
-public class P1 {
-  public static int life = 10;
-  public static int x = 200;
-  public static int y = 200;
-  private static int sprite = 0;
+public class Player {
+  public int life = 10;
+  public int x = 200;
+  public int y = 200;
+  private int sprite = 0;
   public boolean isLeft = false;
 
   public static final int RELAX1SWORDK = 0;
@@ -68,8 +67,10 @@ public class P1 {
           .read(new File("../../img/Sword-Knight-Sprites/Attacking6-Sword-Knight-left.png"));
       SwordKnight[ATTK7SWORDK_L] = ImageIO
           .read(new File("../../img/Sword-Knight-Sprites/Attacking7-Sword-Knight-left.png"));
-      SwordKnight[WALK1SWORDK_L] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Walking1-Sword-Knight-left.png"));
-      SwordKnight[WALK2SWORDK_L] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Walking2-Sword-Knight-left.png"));
+      SwordKnight[WALK1SWORDK_L] = ImageIO
+          .read(new File("../../img/Sword-Knight-Sprites/Walking1-Sword-Knight-left.png"));
+      SwordKnight[WALK2SWORDK_L] = ImageIO
+          .read(new File("../../img/Sword-Knight-Sprites/Walking2-Sword-Knight-left.png"));
 
     } catch (IOException e) {
       JOptionPane.showMessageDialog(null, "A imagem não pôde ser carregada!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -84,15 +85,15 @@ public class P1 {
     }
   }
 
-  public static Image getSprite() {
+  public Image getSprite() {
     return SwordKnight[sprite];
   }
 
-  public static int[] getRect() {
-    return new int[] {x, y, getSprite().getWidth(null), getSprite().getHeight(null)};
+  public int[] getRect() {
+    return new int[] { x, y, getSprite().getWidth(null), getSprite().getHeight(null) };
   }
 
-  public static void setSprite(int sprite) {
-    P1.sprite = sprite;
+  public void setSprite(int sprite) {
+    this.sprite = sprite;
   }
 }
