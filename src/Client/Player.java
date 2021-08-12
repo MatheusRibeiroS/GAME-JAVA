@@ -4,7 +4,7 @@ import java.io.*;
 import javax.imageio.*;
 
 public class Player {
-  public int life = 10;
+  public int life = 5;
   public int x = 200;
   public int y = 200;
   private int sprite = 0;

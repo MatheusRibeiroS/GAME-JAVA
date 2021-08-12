@@ -15,8 +15,8 @@ class Jogo extends Thread implements IJogo {
   Logic logica;
   int MaximoJogadores, jogadoresAtuais = 0;
   int key, keyEnemy;
-  public int life;
-  public int enemyLife;
+  public int life = 20;
+  public int enemyLife = 20;
 
   public int[] posP1 = { 200, 200, 27, 38 };
   public int[] posP2 = { 250, 250, 27, 38 };

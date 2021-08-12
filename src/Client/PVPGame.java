@@ -14,6 +14,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.awt.Color;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -29,8 +31,8 @@ public class PVPGame extends JFrame {
   int keyEnemy = 0;
   Thread t;
   Paint paint;
-  public int life = 5;
-  public int enemyLife = 5;
+  public int life = 20;
+  public int enemyLife = 20;
   public int[] posP1 = { 200, 200, 27, 38 };
   public int[] posP2 = { 250, 250, 27, 38 };
   int dirAdversario = -1;
@@ -139,15 +141,28 @@ public class PVPGame extends JFrame {
     public void paintComponent(Graphics g) {
 
       super.paintComponent(g);
+
       g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
-      if (p1.life > 0) {
-      g.drawImage(p1.getSprite(), p1.x, p1.y, this);
+      if (life > 0) {
+        g.drawImage(p1.getSprite(), p1.x, p1.y, this);
+        g.drawRect(posP1[0], posP1[1], posP1[2], posP1[3]);
       }
-      if(p2.life > 0){
-      g.drawImage(p2.getSprite(), p2.x, p2.y, this);
+      if (enemyLife > 0) {
+        g.drawImage(p2.getSprite(), p2.x, p2.y, this);
+        g.drawRect(posP2[0], posP2[1], posP2[2], posP2[3]);
       }
-      g.drawRect(posP1[0], posP1[1], posP1[2], posP1[3]);
-      g.drawRect(posP2[0], posP2[1], posP2[2], posP2[3]);
+
+      if (numPlayer == 0) {
+        g.setColor(Color.BLACK);
+        g.fillRect(48, 8, 8 * 20, 16);
+        g.setColor(Color.RED);
+        g.fillRect(48, 8, 8 * life, 16);
+      } else if (numPlayer == 1) {
+        g.setColor(Color.BLACK);
+        g.fillRect(48, 8, 8 * 20, 16);
+        g.setColor(Color.RED);
+        g.fillRect(48, 8, 8 * enemyLife, 16);
+      }
 
       Toolkit.getDefaultToolkit().sync();
       this.repaint();
@@ -181,6 +196,20 @@ public class PVPGame extends JFrame {
             p2.x = posP2[0];
             p2.y = posP2[1];
             p2.setSprite(spriteP2);
+            if (life == 0 && numPlayer == 0) {
+              JOptionPane.showMessageDialog(null, "Voce perdeu", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
+              System.exit(1);
+            } else if (life == 0 && numPlayer == 1) {
+              JOptionPane.showMessageDialog(null, "Voce ganhou", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+              System.exit(1);
+            }
+            if (enemyLife == 0 && numPlayer == 1) {
+              JOptionPane.showMessageDialog(null, "Voce perdeu", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
+              System.exit(1);
+            } else if (enemyLife == 0 && numPlayer == 0) {
+              JOptionPane.showMessageDialog(null, "Voce ganhou", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+              System.exit(1);
+            }
             repaint();
           }
         } catch (UnknownHostException e) {

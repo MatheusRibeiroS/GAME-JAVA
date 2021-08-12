@@ -39,6 +39,7 @@ public class Logic implements ILogica, EventListener {
   public int estadoP2 = RELAX1SWORDK_L;
   public boolean attk1 = false;
   public boolean attk2 = false;
+  final int ADD = 7;
   Jogo jogo;
 
   /*
@@ -134,134 +135,6 @@ public class Logic implements ILogica, EventListener {
     }
   }
 
-  Timer t1 = new Timer(75, new ActionListener() {
-    public void actionPerformed(ActionEvent ae) {
-      attk1 = true;
-      if ((estadoP1 == WALK1SWORDK) || (estadoP1 == WALK2SWORDK) || (estadoP1 == RELAX1SWORDK)
-          || (estadoP1 == WALK1SWORDK_L) || (estadoP1 == WALK2SWORDK_L) || (estadoP1 == RELAX1SWORDK_L)) {
-        if (jogo.isLeftP1) {
-          estadoP1 = ATTK1SWORDK_L;
-        } else {
-          estadoP1 = ATTK1SWORDK;
-        }
-      } else if (estadoP1 == ATTK1SWORDK || estadoP1 == ATTK1SWORDK_L) {
-        if (jogo.isLeftP1) {
-          estadoP1 = ATTK2SWORDK_L;
-        } else {
-          estadoP1 = ATTK2SWORDK;
-        }
-      } else if (estadoP1 == ATTK2SWORDK || estadoP1 == ATTK2SWORDK_L) {
-        if (jogo.isLeftP1) {
-          estadoP1 = ATTK3SWORDK_L;
-        } else {
-          estadoP1 = ATTK3SWORDK;
-        }
-      } else if (estadoP1 == ATTK3SWORDK || estadoP1 == ATTK3SWORDK_L) {
-        if (jogo.isLeftP1) {
-          estadoP1 = ATTK4SWORDK_L;
-        } else {
-          estadoP1 = ATTK4SWORDK;
-        }
-      } else if (estadoP1 == ATTK4SWORDK || estadoP1 == ATTK4SWORDK_L) {
-        if (jogo.isLeftP1) {
-          estadoP1 = ATTK5SWORDK_L;
-        } else {
-          estadoP1 = ATTK5SWORDK;
-        }
-      } else if (estadoP1 == ATTK5SWORDK || estadoP1 == ATTK5SWORDK_L) {
-        if (jogo.isLeftP1) {
-          jogo.posP1[0] -= 5;
-          estadoP1 = ATTK6SWORDK_L;
-          if (collide()) {
-            jogo.enemyLife--;
-          }
-        } else {
-          estadoP1 = ATTK6SWORDK;
-        }
-      } else if (estadoP1 == ATTK6SWORDK || estadoP1 == ATTK6SWORDK_L) {
-        if (jogo.isLeftP1) {
-          estadoP1 = ATTK7SWORDK_L;
-        } else {
-          jogo.posP1[0] += 5;
-          estadoP1 = ATTK7SWORDK;
-        }
-      } else if (estadoP1 == ATTK7SWORDK || estadoP1 == ATTK7SWORDK_L) {
-        if (jogo.isLeftP1) {
-          estadoP1 = RELAX2SWORDK_L;
-        } else {
-          estadoP1 = RELAX2SWORDK;
-        }
-        attk1 = false;
-        ((Timer) ae.getSource()).stop();
-      }
-    }
-  });
-
-  Timer t2 = new Timer(75, new ActionListener() {
-    public void actionPerformed(java.awt.event.ActionEvent ae) {
-      attk2 = true;
-      if ((estadoP2 == WALK1SWORDK) || (estadoP2 == WALK2SWORDK) || (estadoP2 == RELAX1SWORDK)
-          || (estadoP2 == WALK1SWORDK_L) || (estadoP2 == WALK2SWORDK_L) || (estadoP2 == RELAX1SWORDK_L)) {
-        if (jogo.isLeftP2) {
-          estadoP2 = ATTK1SWORDK_L;
-        } else {
-          estadoP2 = ATTK1SWORDK;
-        }
-      } else if (estadoP2 == ATTK1SWORDK || estadoP2 == ATTK1SWORDK_L) {
-        if (jogo.isLeftP2) {
-          estadoP2 = ATTK2SWORDK_L;
-        } else {
-          estadoP2 = ATTK2SWORDK;
-        }
-      } else if (estadoP2 == ATTK2SWORDK || estadoP2 == ATTK2SWORDK_L) {
-        if (jogo.isLeftP2) {
-          estadoP2 = ATTK3SWORDK_L;
-        } else {
-          estadoP2 = ATTK3SWORDK;
-        }
-      } else if (estadoP2 == ATTK3SWORDK || estadoP2 == ATTK3SWORDK_L) {
-        if (jogo.isLeftP2) {
-          estadoP2 = ATTK4SWORDK_L;
-        } else {
-          estadoP2 = ATTK4SWORDK;
-        }
-      } else if (estadoP2 == ATTK4SWORDK || estadoP2 == ATTK4SWORDK_L) {
-        if (jogo.isLeftP2) {
-          estadoP2 = ATTK5SWORDK_L;
-        } else {
-          estadoP2 = ATTK5SWORDK;
-        }
-      } else if (estadoP2 == ATTK5SWORDK || estadoP2 == ATTK5SWORDK_L) {
-        if (jogo.isLeftP2) {
-          jogo.posP2[0] -= 5;
-          estadoP2 = ATTK6SWORDK_L;
-          if (collide()) {
-            jogo.enemyLife--;
-          }
-        } else {
-          estadoP2 = ATTK6SWORDK;
-        }
-      } else if (estadoP2 == ATTK6SWORDK || estadoP2 == ATTK6SWORDK_L) {
-        if (jogo.isLeftP2) {
-          estadoP2 = ATTK7SWORDK_L;
-        } else {
-          jogo.posP2[0] += 5;
-          estadoP2 = ATTK7SWORDK;
-        }
-      } else if (estadoP2 == ATTK7SWORDK || estadoP2 == ATTK7SWORDK_L) {
-        if (jogo.isLeftP2) {
-          estadoP2 = RELAX2SWORDK_L;
-        } else {
-          estadoP2 = RELAX2SWORDK;
-        }
-        attk2 = false;
-        ((Timer) ae.getSource()).stop();
-      }
-    }
-  });
-
-  final int ADD = 7;
-
   public void moveP1(int move) {
     if (move == KeyEvent.VK_RIGHT) {
       jogo.isLeftP1 = false;
@@ -331,4 +204,145 @@ public class Logic implements ILogica, EventListener {
       }
     }
   }
+
+  Timer t1 = new Timer(75, new ActionListener() {
+    public void actionPerformed(ActionEvent ae) {
+      attk1 = true;
+      if ((estadoP1 == WALK1SWORDK) || (estadoP1 == WALK2SWORDK) || (estadoP1 == WALK1SWORDK_L)
+          || (estadoP1 == WALK2SWORDK_L) || (estadoP1 == RELAX2SWORDK) || (estadoP1 == RELAX2SWORDK_L)) {
+        if (jogo.isLeftP1) {
+          estadoP1 = ATTK1SWORDK_L;
+        } else {
+          estadoP1 = ATTK1SWORDK;
+        }
+      } else if (estadoP1 == ATTK1SWORDK || estadoP1 == ATTK1SWORDK_L) {
+        if (jogo.isLeftP1) {
+          estadoP1 = ATTK2SWORDK_L;
+        } else {
+          estadoP1 = ATTK2SWORDK;
+        }
+      } else if (estadoP1 == ATTK2SWORDK || estadoP1 == ATTK2SWORDK_L) {
+        if (jogo.isLeftP1) {
+          estadoP1 = ATTK3SWORDK_L;
+        } else {
+          estadoP1 = ATTK3SWORDK;
+        }
+      } else if (estadoP1 == ATTK3SWORDK || estadoP1 == ATTK3SWORDK_L) {
+        if (jogo.isLeftP1) {
+          estadoP1 = ATTK4SWORDK_L;
+        } else {
+          estadoP1 = ATTK4SWORDK;
+        }
+      } else if (estadoP1 == ATTK4SWORDK || estadoP1 == ATTK4SWORDK_L) {
+        if (jogo.isLeftP1) {
+          estadoP1 = ATTK5SWORDK_L;
+        } else {
+          estadoP1 = ATTK5SWORDK;
+        }
+      } else if (estadoP1 == ATTK5SWORDK || estadoP1 == ATTK5SWORDK_L) {
+        if (jogo.isLeftP1) {
+          jogo.posP1[0] -= 10;
+          estadoP1 = ATTK6SWORDK_L;
+          if (collide()) {
+            jogo.enemyLife--;
+            System.out.println("A vida do P2 eh: " + jogo.enemyLife);
+          }
+        } else {
+          jogo.posP1[0] += 10;
+          estadoP1 = ATTK6SWORDK;
+          if (collide()) {
+            jogo.enemyLife--;
+            System.out.println("A vida do P2 eh: " + jogo.enemyLife);
+          }
+        }
+      } else if (estadoP1 == ATTK6SWORDK || estadoP1 == ATTK6SWORDK_L) {
+        if (jogo.isLeftP1) {
+          jogo.posP1[0] += 10;
+          estadoP1 = ATTK7SWORDK_L;
+        } else {
+          jogo.posP1[0] -= 10;
+          estadoP1 = ATTK7SWORDK;
+        }
+      } else if (estadoP1 == ATTK7SWORDK || estadoP1 == ATTK7SWORDK_L) {
+        if (jogo.isLeftP1) {
+          estadoP1 = RELAX2SWORDK_L;
+        } else {
+          estadoP1 = RELAX2SWORDK;
+        }
+        attk1 = false;
+        ((Timer) ae.getSource()).stop();
+      }
+    }
+  });
+
+  Timer t2 = new Timer(75, new ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent ae) {
+      attk2 = true;
+      if ((estadoP2 == WALK1SWORDK) || (estadoP2 == WALK2SWORDK) || (estadoP2 == WALK1SWORDK_L)
+          || (estadoP2 == WALK2SWORDK_L) || (estadoP2 == RELAX2SWORDK) || (estadoP2 == RELAX1SWORDK_L)) {
+        if (jogo.isLeftP2) {
+          estadoP2 = ATTK1SWORDK_L;
+        } else {
+          estadoP2 = ATTK1SWORDK;
+        }
+      } else if (estadoP2 == ATTK1SWORDK || estadoP2 == ATTK1SWORDK_L) {
+        if (jogo.isLeftP2) {
+          estadoP2 = ATTK2SWORDK_L;
+        } else {
+          estadoP2 = ATTK2SWORDK;
+        }
+      } else if (estadoP2 == ATTK2SWORDK || estadoP2 == ATTK2SWORDK_L) {
+        if (jogo.isLeftP2) {
+          estadoP2 = ATTK3SWORDK_L;
+        } else {
+          estadoP2 = ATTK3SWORDK;
+        }
+      } else if (estadoP2 == ATTK3SWORDK || estadoP2 == ATTK3SWORDK_L) {
+        if (jogo.isLeftP2) {
+          estadoP2 = ATTK4SWORDK_L;
+        } else {
+          estadoP2 = ATTK4SWORDK;
+        }
+      } else if (estadoP2 == ATTK4SWORDK || estadoP2 == ATTK4SWORDK_L) {
+        if (jogo.isLeftP2) {
+          estadoP2 = ATTK5SWORDK_L;
+        } else {
+          estadoP2 = ATTK5SWORDK;
+        }
+      } else if (estadoP2 == ATTK5SWORDK || estadoP2 == ATTK5SWORDK_L) {
+        if (jogo.isLeftP2) {
+          jogo.posP2[0] -= 10;
+          estadoP2 = ATTK6SWORDK_L;
+          if (collide()) {
+            jogo.life--;
+            System.out.println("A vida do P1 eh: " + jogo.life);
+          }
+        } else {
+          jogo.posP2[0] += 10;
+          estadoP2 = ATTK6SWORDK;
+          if (collide()) {
+            jogo.life--;
+            System.out.println("A vida do P1 eh: " + jogo.life);
+          }
+        }
+      } else if (estadoP2 == ATTK6SWORDK || estadoP2 == ATTK6SWORDK_L) {
+        if (jogo.isLeftP2) {
+          jogo.posP2[0] += 7;
+          estadoP2 = ATTK7SWORDK_L;
+        } else {
+          jogo.posP2[0] -= 7;
+          estadoP2 = ATTK7SWORDK;
+        }
+      } else if (estadoP2 == ATTK7SWORDK || estadoP2 == ATTK7SWORDK_L) {
+        if (jogo.isLeftP2) {
+          estadoP2 = RELAX2SWORDK_L;
+        } else {
+          estadoP2 = RELAX2SWORDK;
+        }
+        attk2 = false;
+        ((Timer) ae.getSource()).stop();
+      }
+    }
+  });
+
 }
