@@ -200,14 +200,14 @@ public class PVPGame extends JFrame {
               JOptionPane.showMessageDialog(null, "Voce perdeu", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
             } else if (life == 0 && numPlayer == 1) {
-              JOptionPane.showMessageDialog(null, "Voce ganhou", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null, "Voce ganhou!", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
             }
             if (enemyLife == 0 && numPlayer == 1) {
-              JOptionPane.showMessageDialog(null, "Voce perdeu", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null, "Voce perdeu!", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
             } else if (enemyLife == 0 && numPlayer == 0) {
-              JOptionPane.showMessageDialog(null, "Voce ganhou", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null, "Voce ganhou!", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
             }
             repaint();

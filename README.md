@@ -1,14 +1,12 @@
-## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+<h1 align="center">PVP GAME</h1>
 
-## Folder Structure
+<div>
 
-The workspace contains two folders by default, where:
+<p align="center">Trabalho de <strong>Programação Orientada a Objetos</strong></p>
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+<p align="center">O trabalho se encontra na versão <strong>BETA</strong> de desenvolvimento</p>
 
-## Dependency Management
+<p align="center">Atualizações chegando <strong>em breve</strong></p>
 
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+</div>
