@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -14,12 +15,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.awt.Color;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.Font;
 
 public class PVPGame extends JFrame {
 
@@ -33,8 +34,8 @@ public class PVPGame extends JFrame {
   Paint paint;
   public int life = 20;
   public int enemyLife = 20;
-  public int[] posP1 = { 200, 200, 27, 38 };
-  public int[] posP2 = { 250, 250, 27, 38 };
+  public int[] posP1 = { 350, 200, 27, 38 };
+  public int[] posP2 = { 500, 200, 27, 38 };
   int dirAdversario = -1;
   int numPlayer;
   int spriteP1 = 0;
@@ -141,27 +142,26 @@ public class PVPGame extends JFrame {
     public void paintComponent(Graphics g) {
 
       super.paintComponent(g);
+      g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
 
       g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
       if (life > 0) {
-        g.drawImage(p1.getSprite(), p1.x, p1.y, this);
-        g.drawRect(posP1[0], posP1[1], posP1[2], posP1[3]);
-      }
-      if (enemyLife > 0) {
-        g.drawImage(p2.getSprite(), p2.x, p2.y, this);
-        g.drawRect(posP2[0], posP2[1], posP2[2], posP2[3]);
-      }
-
-      if (numPlayer == 0) {
         g.setColor(Color.BLACK);
         g.fillRect(48, 8, 8 * 20, 16);
         g.setColor(Color.RED);
         g.fillRect(48, 8, 8 * life, 16);
-      } else if (numPlayer == 1) {
+        g.setColor(Color.GREEN);
+        g.drawString("P1", posP1[0], posP1[1] - 10);
+        g.drawImage(p1.getSprite(), p1.x, p1.y, this);
+      }
+      if (enemyLife > 0) {
         g.setColor(Color.BLACK);
-        g.fillRect(48, 8, 8 * 20, 16);
+        g.fillRect(700, 8, 8 * 20, 16);
         g.setColor(Color.RED);
-        g.fillRect(48, 8, 8 * enemyLife, 16);
+        g.fillRect(700, 8, 8 * enemyLife, 16);
+        g.setColor(Color.GREEN);
+        g.drawString("P2", posP2[0], posP2[1] - 10);
+        g.drawImage(p2.getSprite(), p2.x, p2.y, this);
       }
 
       Toolkit.getDefaultToolkit().sync();

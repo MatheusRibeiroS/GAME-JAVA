@@ -81,7 +81,6 @@ public class Player {
   public void damage() {
     if (life > 0) {
       life--;
-      System.out.println("A vida do Cavaleiro eh: " + life);
     }
   }
 

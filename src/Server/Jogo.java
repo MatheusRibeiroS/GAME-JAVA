@@ -18,8 +18,8 @@ class Jogo extends Thread implements IJogo {
   public int life = 20;
   public int enemyLife = 20;
 
-  public int[] posP1 = { 200, 200, 27, 38 };
-  public int[] posP2 = { 250, 250, 27, 38 };
+  public int[] posP1 = { 350, 200, 27, 38 };
+  public int[] posP2 = { 500, 200, 27, 38 };
 
   public boolean isLeftP1 = false;
   public boolean isLeftP2 = true;
@@ -99,6 +99,7 @@ class Jogo extends Thread implements IJogo {
       os[0].flush();
       os[1].flush();
     } catch (IOException e) {
+      System.out.println("Erro" + e);
     }
   }
 }
