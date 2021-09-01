@@ -7,6 +7,9 @@ import javax.swing.Timer;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.*;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class Logic implements ILogica, EventListener {
 
@@ -40,6 +43,7 @@ public class Logic implements ILogica, EventListener {
   public boolean attk1 = false;
   public boolean attk2 = false;
   final int ADD = 7;
+  int countdownStarter = 50;
   Jogo jogo;
 
   /*
@@ -49,8 +53,26 @@ public class Logic implements ILogica, EventListener {
   Logic(IJogo jogo) {
     this.jogo = (Jogo) jogo;
   }
+  
+  public void timer() {
+    final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+  final Runnable runnable = new Runnable() {
+
+    public void run() {
+      
+      countdownStarter--;
+
+      if (countdownStarter < 0) {
+        scheduler.shutdown();
+      }
+    }
+  };
+  scheduler.scheduleAtFixedRate(runnable, 0, 1, SECONDS);
+  }
 
   public void executa() {
+    timer();
+
     new Thread(new Runnable() {
       public void run() {
         try {
@@ -69,6 +91,7 @@ public class Logic implements ILogica, EventListener {
             jogo.os[0].writeInt(jogo.posP2[3]);
             jogo.os[0].writeInt(jogo.enemyLife);
             jogo.os[0].writeInt(estadoP2);
+            jogo.os[0].writeInt(countdownStarter);
             jogo.forcaEnvio();
             jogo.os[1].writeInt(1);
             jogo.os[1].writeInt(jogo.posP1[0]);
@@ -83,6 +106,7 @@ public class Logic implements ILogica, EventListener {
             jogo.os[1].writeInt(jogo.posP2[3]);
             jogo.os[1].writeInt(jogo.enemyLife);
             jogo.os[1].writeInt(estadoP2);
+            jogo.os[1].writeInt(countdownStarter);
 
             jogo.forcaEnvio();
           }
@@ -107,7 +131,7 @@ public class Logic implements ILogica, EventListener {
     cx2 = (jogo.posP2[0] + jogo.posP2[2]) / 2;
     cy1 = (jogo.posP1[1] + jogo.posP1[3]) / 2;
     cy2 = (jogo.posP2[1] + jogo.posP2[3]) / 2;
-    return (int)Math.sqrt((cx1 - cx2) * (cx1 - cx2) + (cy1 - cy2) * (cy1 - cy2));
+    return (int) Math.sqrt((cx1 - cx2) * (cx1 - cx2) + (cy1 - cy2) * (cy1 - cy2));
   }
 
   public void animateP1() {
@@ -218,7 +242,8 @@ public class Logic implements ILogica, EventListener {
     public void actionPerformed(ActionEvent ae) {
       attk1 = true;
       if ((estadoP1 == WALK1SWORDK) || (estadoP1 == WALK2SWORDK) || (estadoP1 == WALK1SWORDK_L)
-          || (estadoP1 == WALK2SWORDK_L) || (estadoP1 == RELAX2SWORDK) || (estadoP1 == RELAX2SWORDK_L)) {
+          || (estadoP1 == WALK2SWORDK_L) || (estadoP1 == RELAX2SWORDK) || (estadoP1 == RELAX2SWORDK_L)
+          || (estadoP1 == RELAX1SWORDK) || (estadoP1 == RELAX1SWORDK_L)) {
         if (jogo.isLeftP1) {
           estadoP1 = ATTK1SWORDK_L;
         } else {
@@ -251,12 +276,12 @@ public class Logic implements ILogica, EventListener {
       } else if (estadoP1 == ATTK5SWORDK || estadoP1 == ATTK5SWORDK_L) {
         if (jogo.isLeftP1) {
           estadoP1 = ATTK6SWORDK_L;
-          if (dist() < 20 && jogo.posP1[0] > jogo.posP2[0]) {
+          if (dist() < 40 && jogo.posP1[0] > jogo.posP2[0]) {
             jogo.enemyLife--;
           }
         } else {
           estadoP1 = ATTK6SWORDK;
-          if (dist() < 20 && jogo.posP1[0] < jogo.posP2[0]) {
+          if (dist() < 40 && jogo.posP1[0] < jogo.posP2[0]) {
             jogo.enemyLife--;
           }
         }
@@ -282,7 +307,8 @@ public class Logic implements ILogica, EventListener {
     public void actionPerformed(java.awt.event.ActionEvent ae) {
       attk2 = true;
       if ((estadoP2 == WALK1SWORDK) || (estadoP2 == WALK2SWORDK) || (estadoP2 == WALK1SWORDK_L)
-          || (estadoP2 == WALK2SWORDK_L) || (estadoP2 == RELAX2SWORDK) || (estadoP2 == RELAX2SWORDK_L)) {
+          || (estadoP2 == WALK2SWORDK_L) || (estadoP2 == RELAX2SWORDK) || (estadoP2 == RELAX2SWORDK_L)
+          || (estadoP2 == RELAX1SWORDK) || (estadoP2 == RELAX1SWORDK_L)) {
         if (jogo.isLeftP2) {
           estadoP2 = ATTK1SWORDK_L;
         } else {
@@ -315,12 +341,12 @@ public class Logic implements ILogica, EventListener {
       } else if (estadoP2 == ATTK5SWORDK || estadoP2 == ATTK5SWORDK_L) {
         if (jogo.isLeftP2) {
           estadoP2 = ATTK6SWORDK_L;
-          if (dist() < 20 && jogo.posP2[0] > jogo.posP1[0]) {
+          if (dist() < 40 && jogo.posP2[0] > jogo.posP1[0]) {
             jogo.life--;
           }
         } else {
           estadoP2 = ATTK6SWORDK;
-          if (dist() < 20 && jogo.posP2[0] < jogo.posP1[0]) {
+          if (dist() < 40 && jogo.posP2[0] < jogo.posP1[0]) {
             jogo.life--;
           }
         }

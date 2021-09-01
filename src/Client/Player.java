@@ -4,8 +4,8 @@ import java.io.*;
 import javax.imageio.*;
 
 public class Player {
-  public int life = 5;
-  public int x = 200;
+  public int life = 10;
+  public int x = 350;
   public int y = 200;
   private int sprite = 0;
   public boolean isLeft = false;
@@ -38,39 +38,39 @@ public class Player {
   static {
     try {
       // Sword Knight Sprites
-      SwordKnight[RELAX1SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight.png"));
-      SwordKnight[RELAX2SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight.png"));
-      SwordKnight[ATTK1SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking1-Sword-Knight.png"));
-      SwordKnight[ATTK2SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking2-Sword-Knight.png"));
-      SwordKnight[ATTK3SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking3-Sword-Knight.png"));
-      SwordKnight[ATTK4SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking4-Sword-Knight.png"));
-      SwordKnight[ATTK5SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking5-Sword-Knight.png"));
-      SwordKnight[ATTK6SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking6-Sword-Knight.png"));
-      SwordKnight[ATTK7SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking7-Sword-Knight.png"));
-      SwordKnight[WALK1SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Walking1-Sword-Knight.png"));
-      SwordKnight[WALK2SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Walking2-Sword-Knight.png"));
+      SwordKnight[RELAX1SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight.png")).getScaledInstance(54, 76, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[RELAX2SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight.png")).getScaledInstance(72, 72, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK1SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking1-Sword-Knight.png")).getScaledInstance(58, 86, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK2SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking2-Sword-Knight.png")).getScaledInstance(52, 96, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK3SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking3-Sword-Knight.png")).getScaledInstance(50, 96, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK4SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking4-Sword-Knight.png")).getScaledInstance(72, 90, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK5SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking5-Sword-Knight.png")).getScaledInstance(70, 88, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK6SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking6-Sword-Knight.png")).getScaledInstance(70, 116, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[ATTK7SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Attacking7-Sword-Knight.png")).getScaledInstance(50, 106, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[WALK1SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Walking1-Sword-Knight.png")).getScaledInstance(60, 76, Image.SCALE_AREA_AVERAGING);
+      SwordKnight[WALK2SWORDK] = ImageIO.read(new File("../../img/Sword-Knight-Sprites/Walking2-Sword-Knight.png")).getScaledInstance(54, 76, Image.SCALE_AREA_AVERAGING);
       SwordKnight[RELAX1SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Relaxed1-Sword-Knight-left.png")).getScaledInstance(54, 76, Image.SCALE_AREA_AVERAGING);
       SwordKnight[RELAX2SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Relaxed2-Sword-Knight-left.png")).getScaledInstance(72, 72, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK1SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking1-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking1-Sword-Knight-left.png")).getScaledInstance(58, 86, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK2SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking2-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking2-Sword-Knight-left.png")).getScaledInstance(52, 96, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK3SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking3-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking3-Sword-Knight-left.png")).getScaledInstance(50, 96, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK4SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking4-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking4-Sword-Knight-left.png")).getScaledInstance(72, 90, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK5SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking5-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking5-Sword-Knight-left.png")).getScaledInstance(70, 88, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK6SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking6-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking6-Sword-Knight-left.png")).getScaledInstance(70, 116, Image.SCALE_AREA_AVERAGING);
       SwordKnight[ATTK7SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Attacking7-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Attacking7-Sword-Knight-left.png")).getScaledInstance(50, 106, Image.SCALE_AREA_AVERAGING);
       SwordKnight[WALK1SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Walking1-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Walking1-Sword-Knight-left.png")).getScaledInstance(60, 76, Image.SCALE_AREA_AVERAGING);
       SwordKnight[WALK2SWORDK_L] = ImageIO
-          .read(new File("../../img/Sword-Knight-Sprites/Walking2-Sword-Knight-left.png"));
+          .read(new File("../../img/Sword-Knight-Sprites/Walking2-Sword-Knight-left.png")).getScaledInstance(54, 76, Image.SCALE_AREA_AVERAGING);
 
     } catch (IOException e) {
       JOptionPane.showMessageDialog(null, "A imagem não pôde ser carregada!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);

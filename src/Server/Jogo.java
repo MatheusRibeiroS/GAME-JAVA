@@ -15,11 +15,11 @@ class Jogo extends Thread implements IJogo {
   Logic logica;
   int MaximoJogadores, jogadoresAtuais = 0;
   int key, keyEnemy;
-  public int life = 20;
-  public int enemyLife = 20;
+  public int life = 10;
+  public int enemyLife = 10;
 
-  public int[] posP1 = { 350, 200, 27, 38 };
-  public int[] posP2 = { 500, 200, 27, 38 };
+  public int[] posP1 = { 350, 200, 54, 76 };
+  public int[] posP2 = { 500, 200, 54, 76 };
 
   public boolean isLeftP1 = false;
   public boolean isLeftP2 = true;
@@ -45,7 +45,6 @@ class Jogo extends Thread implements IJogo {
           do {
             if (numDoJogador == 0) {
               key = is[0].readInt();
-
               logica.moveP1(key);
             } else {
               keyEnemy = is[1].readInt();

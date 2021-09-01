@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -17,10 +18,12 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.Font;
 
 public class PVPGame extends JFrame {
 
@@ -32,16 +35,36 @@ public class PVPGame extends JFrame {
   int keyEnemy = 0;
   Thread t;
   Paint paint;
-  public int life = 20;
-  public int enemyLife = 20;
-  public int[] posP1 = { 350, 200, 27, 38 };
-  public int[] posP2 = { 500, 200, 27, 38 };
+  public int life = 10;
+  public int enemyLife = 10;
+  public int[] posP1 = { 350, 200, 54, 76 };
+  public int[] posP2 = { 500, 200, 54, 76 };
   int dirAdversario = -1;
   int numPlayer;
   int spriteP1 = 0;
   int spriteP2 = 0;
+  int time;
   Player p1 = new Player();
   Player p2 = new Player();
+  public String p1Name = "P1";
+  public String p2Name = "P2";
+
+  public class CustomDialog extends JDialog {
+    private JPanel myPanel = null;
+    private JButton button = null;
+
+    public CustomDialog(JFrame frame, boolean modal, String myMessage) {
+    super(frame, modal);
+    myPanel = new JPanel();
+    getContentPane().add(myPanel);
+    myPanel.add(new JLabel(myMessage));
+    button = new JButton("'Beleza!");
+    pack();
+    //setLocationRelativeTo(frame);
+    setLocation(200, 200); // <--
+    setVisible(true);
+    }
+  }
 
   PVPGame() {
     super("PVP GAME");
@@ -49,7 +72,6 @@ public class PVPGame extends JFrame {
     paint = new Paint();
 
     conectaAoServidor();
-
     add(paint);
     pack();
     setResizable(false);
@@ -147,22 +169,29 @@ public class PVPGame extends JFrame {
       g.drawImage(background, 0, 0, getSize().width, getSize().height, this);
       if (life > 0) {
         g.setColor(Color.BLACK);
-        g.fillRect(48, 8, 8 * 20, 16);
+        g.fillRect(48, 8, 8 * 10, 16);
         g.setColor(Color.RED);
         g.fillRect(48, 8, 8 * life, 16);
         g.setColor(Color.GREEN);
-        g.drawString("P1", posP1[0], posP1[1] - 10);
-        g.drawImage(p1.getSprite(), p1.x, p1.y, this);
+        g.drawString(p1Name, posP1[0] + 10, posP1[1] - 10);
+        g.setColor(Color.RED);
+        g.drawString("" + life, 138, 23);
+        g.drawImage(p1.getSprite(), posP1[0], posP1[1], this);
       }
       if (enemyLife > 0) {
         g.setColor(Color.BLACK);
-        g.fillRect(700, 8, 8 * 20, 16);
+        g.fillRect(700, 8, 8 * 10, 16);
         g.setColor(Color.RED);
         g.fillRect(700, 8, 8 * enemyLife, 16);
         g.setColor(Color.GREEN);
-        g.drawString("P2", posP2[0], posP2[1] - 10);
-        g.drawImage(p2.getSprite(), p2.x, p2.y, this);
+        g.drawString(p2Name, posP2[0] + 10, posP2[1] - 10);
+        g.setColor(Color.RED);
+        g.drawString("" + enemyLife, 665, 23);
+        g.drawImage(p2.getSprite(), posP2[0], posP2[1], this);
       }
+      g.setFont(new Font("ArialBlack", Font.CENTER_BASELINE, 30));
+      g.setColor(new Color(255, 115, 0));
+      g.drawString("TIME = " + time, 400, background.getHeight(null));
 
       Toolkit.getDefaultToolkit().sync();
       this.repaint();
@@ -193,21 +222,24 @@ public class PVPGame extends JFrame {
             posP2[3] = is.readInt();
             enemyLife = is.readInt();
             spriteP2 = is.readInt();
+            time = is.readInt();
             p2.x = posP2[0];
             p2.y = posP2[1];
             p2.setSprite(spriteP2);
-            if (life == 0 && numPlayer == 0) {
-              JOptionPane.showMessageDialog(null, "Voce perdeu", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
+            if (life == 0 && numPlayer == 0 || (time == 0 && life < enemyLife && numPlayer == 0)) {
+              JOptionPane.showMessageDialog(null, "Voce perdeu!", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
-            } else if (life == 0 && numPlayer == 1) {
-              JOptionPane.showMessageDialog(null, "Voce ganhou", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+            } else if ((life == 0 && numPlayer == 1) || (time == 0  && life < enemyLife && numPlayer == 1)) {
+              JOptionPane.showMessageDialog(null, "Voce ganhou!", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
-            }
-            if (enemyLife == 0 && numPlayer == 1) {
-              JOptionPane.showMessageDialog(null, "Voce perdeu", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
+            } else if ((enemyLife == 0 && numPlayer == 1) || (time  == 0 && enemyLife < life && numPlayer == 1)) {
+              JOptionPane.showMessageDialog(null, "Voce perdeu!", "QUE PENA", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
-            } else if (enemyLife == 0 && numPlayer == 0) {
-              JOptionPane.showMessageDialog(null, "Voce ganhou", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+            } else if ((enemyLife == 0 && numPlayer == 0) || (time == 0 && enemyLife < life && numPlayer == 0)) {
+              JOptionPane.showMessageDialog(null, "Voce ganhou!", "PARABENS", JOptionPane.INFORMATION_MESSAGE);
+              System.exit(1);
+            } else if(time == 0) {
+              JOptionPane.showMessageDialog(null, "Empatou!", "UAU", JOptionPane.INFORMATION_MESSAGE);
               System.exit(1);
             }
             repaint();
